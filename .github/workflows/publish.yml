@@ -41,4 +41,4 @@ jobs:
         with:
           path: priv
 
-      - uses: actions/deploy-pages
+      - uses: actions/deploy-pages@v4
