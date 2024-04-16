@@ -10,7 +10,7 @@ addEventListener("load", () => {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  fetch("routes.json").then((res) =>
+  fetch("./routes.json").then((res) =>
     res.json().then((routes) => L.polyline([routes[0].points]).addTo(map))
   );
 });
