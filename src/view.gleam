@@ -1,10 +1,11 @@
+import gleam/list
+import gleam/string
 import lustre/attribute
 import lustre/element/html.{html}
 import route.{type Route}
 
 pub fn view(routes: List(Route)) {
-  let assert [route, ..] = routes
-  html([], [head(), body()])
+  html([], [head(), body(routes)])
 }
 
 fn head() {
@@ -36,6 +37,19 @@ fn head() {
   ])
 }
 
-fn body() {
-  html.body([], [html.div([attribute.id("map")], [])])
+fn body(routes: List(Route)) {
+  html.body([], [
+    html.form(
+      [attribute.id("routes-form")],
+      routes
+        |> list.sort(fn(left, right) { string.compare(left.id, right.id) })
+        |> list.map(fn(route) {
+        html.label([], [
+          html.input([attribute.type_("checkbox"), attribute.name(route.id)]),
+          html.text(route.id),
+        ])
+      }),
+    ),
+    html.div([attribute.id("map")], []),
+  ])
 }

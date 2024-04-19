@@ -3,9 +3,10 @@ import gleam/int
 import gleam/list
 import gleam/string
 import simplifile
+import time_of_day.{type TimeOfDay}
 
 pub type RouteRecord {
-  RouteRecord(route_id: String, route_short_name: String)
+  RouteRecord(route_id: String, route_short_name: String, route_color: String)
 }
 
 pub type TripRecord {
@@ -18,11 +19,21 @@ pub type TripRecord {
 }
 
 pub type ShapeRecord {
-  Shape(
+  ShapeRecord(
     shape_id: String,
     shape_pt_lat: Float,
     shape_pt_lon: Float,
     shape_pt_sequence: Int,
+  )
+}
+
+pub type StopTimeRecord {
+  StopTimeRecord(
+    trip_id: String,
+    arrival_time: TimeOfDay,
+    departure_time: TimeOfDay,
+    stop_id: String,
+    stop_sequence: Int,
   )
 }
 
@@ -40,7 +51,7 @@ pub fn load_shapes() -> List(ShapeRecord) {
     let assert Ok(lat) = float.parse(shape_pt_lat)
     let assert Ok(lon) = float.parse(shape_pt_lon)
     let assert Ok(sequence) = int.parse(shape_pt_sequence)
-    Shape(shape_id, lat, lon, sequence)
+    ShapeRecord(shape_id, lat, lon, sequence)
   })
 }
 
@@ -75,10 +86,37 @@ pub fn load_routes() -> List(RouteRecord) {
       _route_desc,
       _route_type,
       _route_url,
-      _route_color,
+      route_color,
       _route_text_color,
     ] = string.split(route, ",")
-    RouteRecord(route_id, route_short_name)
+    RouteRecord(route_id, route_short_name, "#" <> route_color)
+  })
+}
+
+pub fn load_stop_times() -> List(StopTimeRecord) {
+  read_file("stop_times.txt")
+  |> list.drop(1)
+  |> list.map(fn(stop_time) {
+    let assert [
+      trip_id,
+      arrival_time,
+      departure_time,
+      stop_id,
+      stop_sequence,
+      _stop_headsign,
+      _pickup_type,
+      _drop_off_type,
+      _shape_dist_traveled,
+      _timepoint,
+    ] = string.split(stop_time, ",")
+    let assert Ok(parsed_stop_sequence) = int.parse(stop_sequence)
+    StopTimeRecord(
+      trip_id,
+      time_of_day.parse_time_of_day(arrival_time),
+      time_of_day.parse_time_of_day(departure_time),
+      stop_id,
+      parsed_stop_sequence,
+    )
   })
 }
 
