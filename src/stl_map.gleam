@@ -1,8 +1,7 @@
 import gtfs
-import lustre/element
 import lustre/ssg
-import view
 import route
+import view
 
 pub fn main() {
   let route_records = gtfs.load_routes()

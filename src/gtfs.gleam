@@ -1,8 +1,8 @@
-import simplifile
-import gleam/string
-import gleam/list
 import gleam/float
 import gleam/int
+import gleam/list
+import gleam/string
+import simplifile
 
 pub type RouteRecord {
   RouteRecord(route_id: String, route_short_name: String)

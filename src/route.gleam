@@ -1,7 +1,7 @@
-import gtfs.{type RouteRecord, type ShapeRecord, type TripRecord}
-import gleam/list
 import gleam/int
 import gleam/json
+import gleam/list
+import gtfs.{type RouteRecord, type ShapeRecord, type TripRecord}
 
 pub type Route {
   Route(id: String, name: String, trips: List(Trip))
