@@ -11,7 +11,13 @@ pub type Route {
 }
 
 pub type Trip {
-  Trip(id: String, headsign: String, shape: Shape, stops: List(Stop))
+  Trip(
+    id: String,
+    headsign: String,
+    shape: Shape,
+    stops: List(Stop),
+    start_time: TimeOfDay,
+  )
 }
 
 pub type Shape {
@@ -67,11 +73,14 @@ pub fn assemble_from_records(
             )
           })
 
+        let assert Ok(Stop(_, start_time, _)) = list.first(stops)
+
         Trip(
           trip_record.trip_id,
           trip_record.trip_headsign,
           Shape(trip_record.shape_id, shape_points),
           stops,
+          start_time,
         )
       })
 
@@ -85,40 +94,39 @@ pub fn assemble_from_records(
 }
 
 pub fn to_json(route: Route) {
-  json.array([route], of: fn(route) {
-    json.object([
-      #("name", json.string(route.name)),
-      #("color", json.string(route.color)),
-      #(
-        "trips",
-        json.array(route.trips, fn(trip) {
-          json.object([
-            #(
-              "points",
-              json.array(trip.shape.points, of: fn(point) {
-                json.array([point.lat, point.lon], of: json.float)
-              }),
-            ),
-            #(
-              "stops",
-              json.array(trip.stops, of: fn(stop) {
-                json.object([
-                  #("id", json.string(stop.id)),
-                  #(
-                    "arrival_time",
-                    json.string(time_of_day.present(stop.arrival_time)),
-                  ),
-                  #(
-                    "departure_time",
-                    json.string(time_of_day.present(stop.departure_time)),
-                  ),
-                ])
-              }),
-            ),
-          ])
-        }),
-      ),
-    ])
-  })
+  json.object([
+    #("name", json.string(route.name)),
+    #("color", json.string(route.color)),
+    #(
+      "trips",
+      json.array(route.trips, fn(trip) {
+        json.object([
+          #("start_time", json.string(time_of_day.present(trip.start_time))),
+          #(
+            "points",
+            json.array(trip.shape.points, of: fn(point) {
+              json.array([point.lat, point.lon], of: json.float)
+            }),
+          ),
+          #(
+            "stops",
+            json.array(trip.stops, of: fn(stop) {
+              json.object([
+                #("id", json.string(stop.id)),
+                #(
+                  "arrival_time",
+                  json.string(time_of_day.present(stop.arrival_time)),
+                ),
+                #(
+                  "departure_time",
+                  json.string(time_of_day.present(stop.departure_time)),
+                ),
+              ])
+            }),
+          ),
+        ])
+      }),
+    ),
+  ])
   |> json.to_string()
 }

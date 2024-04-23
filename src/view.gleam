@@ -1,8 +1,10 @@
+import gleam/int
 import gleam/list
 import gleam/string
 import lustre/attribute
 import lustre/element/html.{html}
 import route.{type Route}
+import time_of_day
 
 pub fn view(routes: List(Route)) {
   html([], [head(), body(routes)])
@@ -10,6 +12,7 @@ pub fn view(routes: List(Route)) {
 
 fn head() {
   html.head([], [
+    html.meta([attribute.attribute("charset", "utf-8")]),
     html.title([], "Carte STL"),
     html.link([
       attribute.rel("stylesheet"),
@@ -38,18 +41,43 @@ fn head() {
 }
 
 fn body(routes: List(Route)) {
+  let assert Ok(last_departure_time) =
+    routes
+    |> list.flat_map(fn(route) { route.trips })
+    |> list.flat_map(fn(trip) { trip.stops })
+    |> list.map(fn(stop) { stop.departure_time })
+    |> list.sort(time_of_day.compare)
+    |> list.last()
+
   html.body([], [
-    html.form(
-      [attribute.id("routes-form")],
-      routes
-        |> list.sort(fn(left, right) { string.compare(left.id, right.id) })
-        |> list.map(fn(route) {
-        html.label([], [
-          html.input([attribute.type_("checkbox"), attribute.name(route.id)]),
-          html.text(route.id),
-        ])
-      }),
-    ),
+    html.form([attribute.id("routes-form")], [
+      html.div(
+        [],
+        routes
+          |> list.sort(fn(left, right) { string.compare(left.id, right.id) })
+          |> list.map(fn(route) {
+          html.label([], [
+            html.text(route.id),
+            html.input([attribute.type_("checkbox"), attribute.name(route.id)]),
+          ])
+        }),
+      ),
+      html.label([], [
+        html.input([
+          attribute.type_("range"),
+          attribute.name("startAfter"),
+          attribute.attribute("step", "10"),
+          attribute.min("0"),
+          attribute.max(
+            last_departure_time
+            |> time_of_day.as_minutes()
+            |> int.to_string(),
+          ),
+        ]),
+        html.text("Départ après: "),
+        html.span([attribute.id("startTimePreview")], []),
+      ]),
+    ]),
     html.div([attribute.id("map")], []),
   ])
 }

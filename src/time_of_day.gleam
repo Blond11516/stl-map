@@ -1,4 +1,5 @@
 import gleam/int
+import gleam/order.{type Order}
 import gleam/string
 
 pub type TimeOfDay {
@@ -21,4 +22,19 @@ pub fn present(time_of_day: TimeOfDay) -> String {
     int.to_string(time_of_day.second),
   ]
   |> string.join(":")
+}
+
+pub fn compare(a: TimeOfDay, b: TimeOfDay) -> Order {
+  let total_a_seconds = a.hour * 3600 + a.minute * 60 + a.second
+  let total_b_seconds = b.hour * 3600 + b.minute * 60 + b.second
+
+  case total_a_seconds - total_b_seconds {
+    n if n < 0 -> order.Lt
+    n if n > 0 -> order.Gt
+    _ -> order.Eq
+  }
+}
+
+pub fn as_minutes(time_of_day: TimeOfDay) -> Int {
+  time_of_day.hour * 60 + time_of_day.minute
 }
