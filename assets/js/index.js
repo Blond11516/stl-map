@@ -1,5 +1,6 @@
 let map;
 let polylines = {};
+let routes = {};
 
 /**
  * @type {Element}
@@ -91,31 +92,39 @@ function removeLine(routeId) {
 /**
  * @param {string} routeId
  */
-function addLine(routeId) {
-  fetch(`./${routeId.toLowerCase()}.json`).then((res) =>
-    res.json().then((route) => {
-      const startTimeObject = timeFromMinutes(startTime);
-      const trip = route.trips
-        .toSorted((a, b) => {
-          const aTime = parseTime(a.start_time);
-          const bTime = parseTime(b.start_time);
-          return compareTimes(aTime, bTime);
-        })
-        .find((trip) => {
-          const tripStartTime = parseTime(trip.start_time);
-
-          return compareTimes(startTimeObject, tripStartTime) < 0;
-        });
-
-      if (trip) {
-        const line = L.polyline([trip.points], {
-          color: route.color,
-        });
-        line.addTo(map);
-        polylines[routeId] = line;
-      }
+async function addLine(routeId) {
+  const route = await getRouteData(routeId);
+  const startTimeObject = timeFromMinutes(startTime);
+  const trip = route.trips
+    .toSorted((a, b) => {
+      const aTime = parseTime(a.start_time);
+      const bTime = parseTime(b.start_time);
+      return compareTimes(aTime, bTime);
     })
-  );
+    .find((trip) => {
+      const tripStartTime = parseTime(trip.start_time);
+
+      return compareTimes(startTimeObject, tripStartTime) < 0;
+    });
+
+  if (trip) {
+    const line = L.polyline([trip.points], {
+      color: route.color,
+    });
+    line.addTo(map);
+    polylines[routeId] = line;
+  }
+}
+
+async function getRouteData(routeId) {
+  if (routeId in routes) {
+    return routes[routeId];
+  }
+
+  const res = await fetch(`./${routeId.toLowerCase()}.json`);
+  const route = await res.json();
+  routes[routeId] = route;
+  return route;
 }
 
 /**
