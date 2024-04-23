@@ -18,6 +18,7 @@ gleam_stdlib = "0.36.0"
 simplifile = "1.7.0"
 lustre = "4.1.7"
 gleam_json = "1.0.0"
+birl = "1.6.1"
 
 [dev-dependencies]
 gleeunit = "1.1.2"
