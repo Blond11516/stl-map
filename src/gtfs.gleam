@@ -15,6 +15,7 @@ pub type TripRecord {
     route_id: String,
     trip_headsign: String,
     shape_id: String,
+    direction_id: Int,
   )
 }
 
@@ -65,12 +66,13 @@ pub fn load_trips() -> List(TripRecord) {
       trip_id,
       trip_headsign,
       _trip_short_name,
-      _direction_id,
+      direction_id,
       _block_id,
       shape_id,
       _wheelchair_accessible,
     ] = string.split(trip, ",")
-    TripRecord(trip_id, route_id, trip_headsign, shape_id)
+    let assert Ok(direction) = int.parse(direction_id)
+    TripRecord(trip_id, route_id, trip_headsign, shape_id, direction)
   })
 }
 

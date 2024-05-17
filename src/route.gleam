@@ -10,6 +10,11 @@ pub type Route {
   Route(id: String, name: String, trips: List(Trip), color: String)
 }
 
+pub type Direction {
+  Zero
+  One
+}
+
 pub type Trip {
   Trip(
     id: String,
@@ -17,6 +22,7 @@ pub type Trip {
     shape: Shape,
     stops: List(Stop),
     start_time: TimeOfDay,
+    direction: Direction,
   )
 }
 
@@ -75,12 +81,15 @@ pub fn assemble_from_records(
 
         let assert Ok(Stop(_, start_time, _)) = list.first(stops)
 
+        let direction = direction_from_int(trip_record.direction_id)
+
         Trip(
           trip_record.trip_id,
           trip_record.trip_headsign,
           Shape(trip_record.shape_id, shape_points),
           stops,
           start_time,
+          direction,
         )
       })
 
@@ -102,6 +111,7 @@ pub fn to_json(route: Route) {
       json.array(route.trips, fn(trip) {
         json.object([
           #("start_time", json.string(time_of_day.present(trip.start_time))),
+          #("direction", json.int(direction_to_int(trip.direction))),
           #(
             "points",
             json.array(trip.shape.points, of: fn(point) {
@@ -129,4 +139,19 @@ pub fn to_json(route: Route) {
     ),
   ])
   |> json.to_string()
+}
+
+fn direction_from_int(direction_id: Int) -> Direction {
+  case direction_id {
+    0 -> Zero
+    1 -> One
+    _ -> panic as "Direction IDs should always be 0 or 1"
+  }
+}
+
+fn direction_to_int(direction: Direction) -> Int {
+  case direction {
+    Zero -> 0
+    One -> 1
+  }
 }

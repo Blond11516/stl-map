@@ -11,3 +11,11 @@ body {
 #map {
 	flex: 1;
 }
+
+#routes-form {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+
+	margin: 4px;
+}

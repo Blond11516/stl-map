@@ -51,6 +51,43 @@ fn body(routes: List(Route)) {
 
   html.body([], [
     html.form([attribute.id("routes-form")], [
+      html.div([], [
+        html.label([], [
+          html.input([
+            attribute.type_("range"),
+            attribute.name("startAfter"),
+            attribute.attribute("step", "10"),
+            attribute.min("0"),
+            attribute.max(
+              last_departure_time
+              |> time_of_day.as_minutes()
+              |> int.to_string(),
+            ),
+          ]),
+          html.text("Départ après: "),
+          html.span([attribute.id("startTimePreview")], []),
+        ]),
+        html.fieldset([], [
+          html.legend([], [html.text("Direction:")]),
+          html.label([], [
+            html.input([
+              attribute.type_("radio"),
+              attribute.name("direction"),
+              attribute.value("0"),
+              attribute.checked(True),
+            ]),
+            html.text("0"),
+          ]),
+          html.label([], [
+            html.input([
+              attribute.type_("radio"),
+              attribute.name("direction"),
+              attribute.value("1"),
+            ]),
+            html.text("1"),
+          ]),
+        ]),
+      ]),
       html.div(
         [],
         routes
@@ -62,21 +99,6 @@ fn body(routes: List(Route)) {
           ])
         }),
       ),
-      html.label([], [
-        html.input([
-          attribute.type_("range"),
-          attribute.name("startAfter"),
-          attribute.attribute("step", "10"),
-          attribute.min("0"),
-          attribute.max(
-            last_departure_time
-            |> time_of_day.as_minutes()
-            |> int.to_string(),
-          ),
-        ]),
-        html.text("Départ après: "),
-        html.span([attribute.id("startTimePreview")], []),
-      ]),
     ]),
     html.div([attribute.id("map")], []),
   ])

@@ -18,6 +18,11 @@ let startTimePreview;
  */
 let startTime;
 
+/**
+ * @type {number}
+ */
+let direction;
+
 const formId = "routes-form";
 
 addEventListener("load", () => {
@@ -35,6 +40,10 @@ addEventListener("load", () => {
   const form = document.getElementById(formId);
 
   form.addEventListener("change", changeRoutes);
+
+  direction = parseInt(
+    document.querySelector("input[name=direction]:checked").value
+  );
 
   for (const checkbox of listRouteCheckboxes()) {
     if (checkbox.checked) {
@@ -62,10 +71,16 @@ function listRouteCheckboxes() {
  * @listens Event
  */
 function changeRoutes(e) {
-  if (e.target.name === "startAfter") {
-    changeStartTime(e);
-  } else {
-    changeSelectedRoutes(e);
+  switch (e.target.name) {
+    case "startAfter":
+      changeStartTime(e);
+      break;
+    case "direction":
+      changeDirection(e);
+      break;
+    default:
+      changeSelectedRoutes(e);
+      break;
   }
 }
 
@@ -75,6 +90,21 @@ function changeRoutes(e) {
 function changeStartTime(e) {
   startTimePreview.textContent = formatStartTime(e.target.value);
   startTime = Number.parseInt(e.target.value);
+
+  for (const checkbox of listRouteCheckboxes()) {
+    if (checkbox.checked) {
+      const routeName = checkbox.name;
+      removeLine(routeName);
+      addLine(routeName);
+    }
+  }
+}
+
+/**
+ * @param {Event} e
+ */
+function changeDirection(e) {
+  direction = parseInt(e.target.value);
 
   for (const checkbox of listRouteCheckboxes()) {
     if (checkbox.checked) {
@@ -129,6 +159,10 @@ async function addLine(routeId) {
       return compareTimes(aTime, bTime);
     })
     .find((trip) => {
+      if (trip.direction !== direction) {
+        return false;
+      }
+
       const tripStartTime = parseTime(trip.start_time);
 
       return compareTimes(startTimeObject, tripStartTime) < 0;
@@ -215,6 +249,7 @@ function compareTimes(a, b) {
  * @typedef {Object} Trip
  * @property {string} start_time
  * @property {Array<Point>} points
+ * @property {number} direction
  */
 
 /**
