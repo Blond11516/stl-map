@@ -1,23 +1,24 @@
 import birl
 import birl/duration
+import common/route
 import gleam/int
 import gleam/io
 import gleam/list
 import gtfs
+import gtfs/loader as gtfs_loader
 import lustre/ssg
-import route
 import view
 
 pub fn main() {
-  let route_records = timed("load_routes", fn() { gtfs.load_routes() })
-  let trip_records = timed("load_trips", fn() { gtfs.load_trips() })
-  let shape_records = timed("load_shapes", fn() { gtfs.load_shapes() })
+  let route_records = timed("load_routes", fn() { gtfs_loader.load_routes() })
+  let trip_records = timed("load_trips", fn() { gtfs_loader.load_trips() })
+  let shape_records = timed("load_shapes", fn() { gtfs_loader.load_shapes() })
   let stop_time_records =
-    timed("load_stop_times", fn() { gtfs.load_stop_times() })
+    timed("load_stop_times", fn() { gtfs_loader.load_stop_times() })
 
   let routes =
     timed("assemble_routes", fn() {
-      route.assemble_from_records(
+      gtfs.assemble_from_records(
         route_records,
         trip_records,
         shape_records,

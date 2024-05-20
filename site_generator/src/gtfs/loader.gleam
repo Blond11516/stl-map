@@ -1,42 +1,13 @@
+import common/time_of_day
 import gleam/float
 import gleam/int
 import gleam/list
 import gleam/string
+import gtfs.{
+  type RouteRecord, type ShapeRecord, type StopTimeRecord, type TripRecord,
+  RouteRecord, ShapeRecord, StopTimeRecord, TripRecord,
+}
 import simplifile
-import time_of_day.{type TimeOfDay}
-
-pub type RouteRecord {
-  RouteRecord(route_id: String, route_short_name: String, route_color: String)
-}
-
-pub type TripRecord {
-  TripRecord(
-    trip_id: String,
-    route_id: String,
-    trip_headsign: String,
-    shape_id: String,
-    direction_id: Int,
-  )
-}
-
-pub type ShapeRecord {
-  ShapeRecord(
-    shape_id: String,
-    shape_pt_lat: Float,
-    shape_pt_lon: Float,
-    shape_pt_sequence: Int,
-  )
-}
-
-pub type StopTimeRecord {
-  StopTimeRecord(
-    trip_id: String,
-    arrival_time: TimeOfDay,
-    departure_time: TimeOfDay,
-    stop_id: String,
-    stop_sequence: Int,
-  )
-}
 
 pub fn load_shapes() -> List(ShapeRecord) {
   read_file("shapes.txt")

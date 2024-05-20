@@ -27,18 +27,22 @@ jobs:
 
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "26.0.2"
-          gleam-version: "1.0.0"
-          rebar3-version: "3"
+          otp-version: "27.0"
+          gleam-version: "1.1.0"
+          rebar3-version: "3.23.0"
 
-      - run: gleam deps download
+      - uses: extractions/setup-just@v1
+        with:
+          just-version: 1.26.0
 
-      - run: gleam build
+      - run: just deps_download
 
-      - run: gleam run
+      - run: just build
+
+      - run: just gen
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: priv
+          path: site
 
       - uses: actions/deploy-pages@v4
