@@ -3,5 +3,5 @@
     "module": "ES2020",
     "lib": ["ES2020", "ESNext.Array", "DOM"]
   },
-  "include": ["assets/js/**/*.js"]
+  "include": ["src/*.mjs"]
 }

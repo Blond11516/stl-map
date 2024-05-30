@@ -1,12 +1,16 @@
+import {
+  compare_times,
+  time_from_minutes,
+  parse_time,
+  get_route_data,
+  format_start_time,
+} from "./frontend.mjs";
+
 let map;
 /**
  * @type {Object<string, any>}
  */
 let polylines = {};
-/**
- * @type {Object<string, Route>}
- */
-let routes = {};
 
 /**
  * @type {Element}
@@ -53,7 +57,7 @@ addEventListener("load", () => {
 
   startTimePreview = document.getElementById("startTimePreview");
   startTime = document.querySelector("input[name=startAfter]").value;
-  startTimePreview.textContent = formatStartTime(startTime);
+  startTimePreview.textContent = format_start_time(startTime);
 });
 
 /**
@@ -88,7 +92,7 @@ function changeRoutes(e) {
  * @param {Event} e
  */
 function changeStartTime(e) {
-  startTimePreview.textContent = formatStartTime(e.target.value);
+  startTimePreview.textContent = format_start_time(e.target.value);
   startTime = Number.parseInt(e.target.value);
 
   for (const checkbox of listRouteCheckboxes()) {
@@ -116,16 +120,6 @@ function changeDirection(e) {
 }
 
 /**
- * @param {Number} totalMinutes
- * @returns {string}
- */
-function formatStartTime(totalMinutes) {
-  const { hour, minute } = timeFromMinutes(totalMinutes);
-
-  return `${hour}:${minute}`;
-}
-
-/**
  * @param {Event} e
  */
 function changeSelectedRoutes(e) {
@@ -150,22 +144,22 @@ function removeLine(routeId) {
  * @param {string} routeId
  */
 async function addLine(routeId) {
-  const route = await getRouteData(routeId);
-  const startTimeObject = timeFromMinutes(startTime);
+  const route = await get_route_data(routeId);
+  const startTimeObject = time_from_minutes(startTime);
   const trip = route.trips
     .toSorted((a, b) => {
-      const aTime = parseTime(a.start_time);
-      const bTime = parseTime(b.start_time);
-      return compareTimes(aTime, bTime);
+      const aTime = parse_time(a.start_time);
+      const bTime = parse_time(b.start_time);
+      return compare_times(aTime, bTime);
     })
     .find((trip) => {
       if (trip.direction !== direction) {
         return false;
       }
 
-      const tripStartTime = parseTime(trip.start_time);
+      const tripStartTime = parse_time(trip.start_time);
 
-      return compareTimes(startTimeObject, tripStartTime) < 0;
+      return compare_times(startTimeObject, tripStartTime) < 0;
     });
 
   if (trip) {
@@ -175,61 +169,6 @@ async function addLine(routeId) {
     line.addTo(map);
     polylines[routeId] = line;
   }
-}
-
-/**
- * @param {string} routeId
- * @returns {Promise<Route>}
- */
-async function getRouteData(routeId) {
-  if (routeId in routes) {
-    return routes[routeId];
-  }
-
-  const res = await fetch(`./${routeId.toLowerCase()}.json`);
-  const route = await res.json();
-  routes[routeId] = route;
-  return route;
-}
-
-/**
- * @param {string} raw
- * @returns {Time}
- */
-function parseTime(raw) {
-  const [hour, minute, second] = raw.split(":");
-  return {
-    hour: Number.parseInt(hour),
-    minute: Number.parseInt(minute),
-    second: Number.parseInt(second),
-  };
-}
-
-/**
- * @param {number} totalMinutes
- * @returns {Time}
- */
-function timeFromMinutes(totalMinutes) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  return {
-    hour: hours,
-    minute: minutes,
-    second: 0,
-  };
-}
-
-/**
- * @param {Time} a
- * @param {Time} b
- * @returns {number}
- */
-function compareTimes(a, b) {
-  const totalASeconds = a.hour * 3600 + a.minute * 60 + a.second;
-  const totalBSeconds = b.hour * 3600 + b.minute * 60 + b.second;
-
-  return totalASeconds - totalBSeconds;
 }
 
 /**

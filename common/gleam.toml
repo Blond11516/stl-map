@@ -17,4 +17,3 @@ gleam_stdlib = "0.37.0"
 gleam_json = "1.0.1"
 
 [dev-dependencies]
-gleeunit = "1.1.2"

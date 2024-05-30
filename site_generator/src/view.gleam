@@ -36,7 +36,10 @@ fn head() {
     ),
     html.link([attribute.rel("stylesheet"), attribute.href("css/reset.css")]),
     html.link([attribute.rel("stylesheet"), attribute.href("css/index.css")]),
-    html.script([attribute.type_("module"), attribute.src("js/index.js")], ""),
+    html.script(
+      [attribute.type_("module"), attribute.src("js/frontend/index.mjs")],
+      "",
+    ),
   ])
 }
 
@@ -93,11 +96,11 @@ fn body(routes: List(Route)) {
         routes
           |> list.sort(fn(left, right) { string.compare(left.id, right.id) })
           |> list.map(fn(route) {
-          html.label([], [
-            html.text(route.id),
-            html.input([attribute.type_("checkbox"), attribute.name(route.id)]),
-          ])
-        }),
+            html.label([], [
+              html.text(route.id),
+              html.input([attribute.type_("checkbox"), attribute.name(route.id)]),
+            ])
+          }),
       ),
     ]),
     html.div([attribute.id("map")], []),

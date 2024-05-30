@@ -1,6 +1,6 @@
 import birl
 import birl/duration
-import common/route
+import common/route_json
 import gleam/int
 import gleam/io
 import gleam/list
@@ -36,7 +36,7 @@ pub fn main() {
       ssg.add_static_asset(
         ssg_config,
         "/" <> route.id <> ".json",
-        route.to_json(route),
+        route |> route_json.from_route() |> route_json.serialize(),
       )
     })
     |> ssg.build()
