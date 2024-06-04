@@ -5,51 +5,31 @@ import {
   get_route_data,
   format_start_time,
 } from "./frontend.mjs";
+import globals from "./globals.mjs";
 // import * as _document from "./document.mjs";
 // import * as element from "./element.mjs";
 import * as _document from "../plinth/plinth/browser/document.mjs";
 import * as element from "../plinth/plinth/browser/element.mjs";
-
-let map;
-/**
- * @type {Object<string, any>}
- */
-let polylines = {};
-
-/**
- * @type {Element}
- */
-let startTimePreview;
-
-/**
- * @type {number}
- */
-let startTime;
-
-/**
- * @type {number}
- */
-let direction;
 
 const formId = "routes-form";
 
 addEventListener("load", () => {
   const levisLat = 46.736269;
   const levisLon = -71.2535253;
-  map = L.map("map").setView([levisLat, levisLon], 11.65);
+  globals.map = L.map("map").setView([levisLat, levisLon], 11.65);
 
   // TODO implement OSM usage policies: https://operations.osmfoundation.org/policies/tiles/
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map);
+  }).addTo(globals.map);
 
   const form = _document.get_element_by_id(formId)[0];
 
   element.add_event_listener(form, "change", changeRoutes);
 
-  direction = parseInt(
+  globals.direction = parseInt(
     _document.query_selector("input[name=direction]:checked")[0].value
   );
 
@@ -59,9 +39,11 @@ addEventListener("load", () => {
     }
   }
 
-  startTimePreview = _document.get_element_by_id("startTimePreview")[0];
-  startTime = _document.query_selector("input[name=startAfter]")[0].value;
-  startTimePreview.textContent = format_start_time(startTime);
+  globals.startTimePreview = _document.get_element_by_id("startTimePreview")[0];
+  globals.startTime = _document.query_selector(
+    "input[name=startAfter]"
+  )[0].value;
+  globals.startTimePreview.textContent = format_start_time(globals.startTime);
 });
 
 /**
@@ -96,8 +78,8 @@ function changeRoutes(e) {
  * @param {Event} e
  */
 function changeStartTime(e) {
-  startTimePreview.textContent = format_start_time(e.target.value);
-  startTime = Number.parseInt(e.target.value);
+  globals.startTimePreview.textContent = format_start_time(e.target.value);
+  globals.startTime = Number.parseInt(e.target.value);
 
   for (const checkbox of listRouteCheckboxes()) {
     if (checkbox.checked) {
@@ -112,7 +94,7 @@ function changeStartTime(e) {
  * @param {Event} e
  */
 function changeDirection(e) {
-  direction = parseInt(e.target.value);
+  globals.direction = parseInt(e.target.value);
 
   for (const checkbox of listRouteCheckboxes()) {
     if (checkbox.checked) {
@@ -138,9 +120,9 @@ function changeSelectedRoutes(e) {
  * @param {string} routeId
  */
 function removeLine(routeId) {
-  if (routeId in polylines) {
-    polylines[routeId].remove();
-    delete polylines[routeId];
+  if (routeId in globals.polylines) {
+    globals.polylines[routeId].remove();
+    delete globals.polylines[routeId];
   }
 }
 
@@ -149,7 +131,7 @@ function removeLine(routeId) {
  */
 async function addLine(routeId) {
   const route = await get_route_data(routeId);
-  const startTimeObject = time_from_minutes(startTime);
+  const startTimeObject = time_from_minutes(globals.startTime);
   const trip = route.trips
     .toSorted((a, b) => {
       const aTime = parse_time(a.start_time);
@@ -157,7 +139,7 @@ async function addLine(routeId) {
       return compare_times(aTime, bTime);
     })
     .find((trip) => {
-      if (trip.direction !== direction) {
+      if (trip.direction !== globals.direction) {
         return false;
       }
 
@@ -170,8 +152,8 @@ async function addLine(routeId) {
     const line = L.polyline([trip.points], {
       color: route.color,
     });
-    line.addTo(map);
-    polylines[routeId] = line;
+    line.addTo(globals.map);
+    globals.polylines[routeId] = line;
   }
 }
 
