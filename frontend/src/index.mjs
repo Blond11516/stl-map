@@ -5,6 +5,8 @@ import {
   get_route_data,
   format_start_time,
 } from "./frontend.mjs";
+import * as _document from "./document.mjs";
+import * as element from "./element.mjs";
 
 let map;
 /**
@@ -41,12 +43,12 @@ addEventListener("load", () => {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  const form = document.getElementById(formId);
+  const form = _document.get_element_by_id(formId);
 
-  form.addEventListener("change", changeRoutes);
+  element.add_event_listener(form, "change", changeRoutes);
 
   direction = parseInt(
-    document.querySelector("input[name=direction]:checked").value
+    _document.query_selector("input[name=direction]:checked").value
   );
 
   for (const checkbox of listRouteCheckboxes()) {
@@ -55,8 +57,8 @@ addEventListener("load", () => {
     }
   }
 
-  startTimePreview = document.getElementById("startTimePreview");
-  startTime = document.querySelector("input[name=startAfter]").value;
+  startTimePreview = _document.get_element_by_id("startTimePreview");
+  startTime = _document.query_selector("input[name=startAfter]").value;
   startTimePreview.textContent = format_start_time(startTime);
 });
 
@@ -65,7 +67,7 @@ addEventListener("load", () => {
  */
 function listRouteCheckboxes() {
   const checkboxes = Array.from(
-    document.querySelectorAll(`#${formId} input[type=checkbox]`)
+    _document.query_selector_all(`#${formId} input[type=checkbox]`)
   );
   return checkboxes;
 }
