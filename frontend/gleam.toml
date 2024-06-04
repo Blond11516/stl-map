@@ -18,5 +18,7 @@ target = "javascript"
 gleam_stdlib = "0.37.0"
 gleam_javascript = "0.8.0"
 common = { path = "../common" }
+# plinth = "0.3.0"
+plinth = { path = "../../plinth" }
 
 [dev-dependencies]

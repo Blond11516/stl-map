@@ -5,8 +5,10 @@ import {
   get_route_data,
   format_start_time,
 } from "./frontend.mjs";
-import * as _document from "./document.mjs";
-import * as element from "./element.mjs";
+// import * as _document from "./document.mjs";
+// import * as element from "./element.mjs";
+import * as _document from "../plinth/plinth/browser/document.mjs";
+import * as element from "../plinth/plinth/browser/element.mjs";
 
 let map;
 /**
@@ -43,12 +45,12 @@ addEventListener("load", () => {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  const form = _document.get_element_by_id(formId);
+  const form = _document.get_element_by_id(formId)[0];
 
   element.add_event_listener(form, "change", changeRoutes);
 
   direction = parseInt(
-    _document.query_selector("input[name=direction]:checked").value
+    _document.query_selector("input[name=direction]:checked")[0].value
   );
 
   for (const checkbox of listRouteCheckboxes()) {
@@ -57,8 +59,8 @@ addEventListener("load", () => {
     }
   }
 
-  startTimePreview = _document.get_element_by_id("startTimePreview");
-  startTime = _document.query_selector("input[name=startAfter]").value;
+  startTimePreview = _document.get_element_by_id("startTimePreview")[0];
+  startTime = _document.query_selector("input[name=startAfter]")[0].value;
   startTimePreview.textContent = format_start_time(startTime);
 });
 
