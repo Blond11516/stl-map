@@ -6,8 +6,7 @@ import {
   format_start_time,
 } from "./frontend.mjs";
 import globals from "./globals.mjs";
-// import * as _document from "./document.mjs";
-// import * as element from "./element.mjs";
+import * as line from "./line.mjs";
 import * as _document from "../plinth/plinth/browser/document.mjs";
 import * as element from "../plinth/plinth/browser/element.mjs";
 
@@ -149,11 +148,7 @@ async function addLine(routeId) {
     });
 
   if (trip) {
-    const line = L.polyline([trip.points], {
-      color: route.color,
-    });
-    line.addTo(globals.map);
-    globals.polylines[routeId] = line;
+    line.add_to_map(routeId, { points: trip.points, color: route.color });
   }
 }
 
