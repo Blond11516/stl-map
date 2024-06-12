@@ -12,6 +12,7 @@ import * as element from "../plinth/plinth/browser/element.mjs";
 import * as map from "./frontend/leaflet/map.mjs";
 import * as latLng from "./frontend/leaflet/lat_lng.mjs";
 import * as tileLayer from "./frontend/leaflet/tile_layer.mjs";
+import * as index from "./index2.mjs";
 
 const formId = "routes-form";
 
@@ -45,7 +46,7 @@ addEventListener("load", () => {
     _document.query_selector("input[name=direction]:checked")[0].value
   );
 
-  for (const checkbox of listRouteCheckboxes()) {
+  for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
       addLine(checkbox.name);
     }
@@ -57,16 +58,6 @@ addEventListener("load", () => {
   )[0].value;
   globals.startTimePreview.textContent = format_start_time(globals.startTime);
 });
-
-/**
- * @returns {Array<Element>}
- */
-function listRouteCheckboxes() {
-  const checkboxes = Array.from(
-    _document.query_selector_all(`#${formId} input[type=checkbox]`)
-  );
-  return checkboxes;
-}
 
 /**
  * @param {Event} e
@@ -93,7 +84,7 @@ function changeStartTime(e) {
   globals.startTimePreview.textContent = format_start_time(e.target.value);
   globals.startTime = Number.parseInt(e.target.value);
 
-  for (const checkbox of listRouteCheckboxes()) {
+  for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
       removeLine(routeName);
@@ -108,7 +99,7 @@ function changeStartTime(e) {
 function changeDirection(e) {
   globals.direction = parseInt(e.target.value);
 
-  for (const checkbox of listRouteCheckboxes()) {
+  for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
       removeLine(routeName);
