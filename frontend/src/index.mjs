@@ -59,7 +59,7 @@ addEventListener("load", () => {
 function changeRoutes(e) {
   switch (e.target.name) {
     case "startAfter":
-      changeStartTime(e);
+      index.change_start_time(e);
       break;
     case "direction":
       changeDirection(e);
@@ -67,22 +67,6 @@ function changeRoutes(e) {
     default:
       changeSelectedRoutes(e);
       break;
-  }
-}
-
-/**
- * @param {Event} e
- */
-function changeStartTime(e) {
-  globals.startTimePreview.textContent = format_start_time(e.target.value);
-  globals.startTime = Number.parseInt(e.target.value);
-
-  for (const checkbox of index.list_route_checkboxes()) {
-    if (checkbox.checked) {
-      const routeName = checkbox.name;
-      index.remove_line(routeName);
-      index.add_line(routeName);
-    }
   }
 }
 

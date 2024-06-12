@@ -2,6 +2,7 @@ import common/route.{ShapePoint}
 import common/time_of_day
 import frontend
 import frontend/globals
+import gleam/int
 import gleam/javascript/array.{type Array}
 import gleam/javascript/promise.{type Promise}
 import gleam/list
@@ -9,7 +10,9 @@ import gleam/option.{Some}
 import gleam/order.{Lt}
 import line.{Line}
 import plinth/browser/document
+import plinth/browser/element
 import plinth/browser/element_type.{type Element}
+import plinth/browser/event.{type Event}
 import plinth/browser/object
 
 const form_id = "routes-form"
@@ -18,29 +21,30 @@ pub fn list_route_checkboxes() -> Array(Element) {
   document.query_selector_all("#" <> form_id <> " input[type=checkbox]")
 }
 
-// pub fn change_start_time(e: Event) -> Nil {
-//   let assert Ok(start_time) = int.parse(e.target.value)
+pub fn change_start_time(e: Event) -> Nil {
+  let assert Ok(start_time) = int.parse(e.target.value)
 
-//   element.set_attribute(
-//     globals.get_start_time_preview(),
-//     "textContent",
-//     frontend.format_start_time(start_time),
-//   )
-//   globals.set_start_time(start_time)
+  element.set_attribute(
+    globals.get_start_time_preview(),
+    "textContent",
+    frontend.format_start_time(start_time),
+  )
+  globals.set_start_time(start_time)
 
-//   list_route_checkboxes()
-//   |> array.to_list()
-//   |> list.each(fn (checkbox) {
-//     case checkbox.checked {
-//       True -> {
-//         let route_name = checkbox.name
-//         remove_line(route_name)
-//         add_line(route_name)
-//       }
-//       False -> Nil
-//     }
-//   })
-// }
+  list_route_checkboxes()
+  |> array.to_list()
+  |> list.each(fn(checkbox) {
+    case checkbox.checked {
+      True -> {
+        let route_name = checkbox.name
+        remove_line(route_name)
+        add_line(route_name)
+        Nil
+      }
+      False -> Nil
+    }
+  })
+}
 
 pub fn add_line(route_id: String) -> Promise(Nil) {
   let route_data_promise = frontend.get_route_data(route_id)
