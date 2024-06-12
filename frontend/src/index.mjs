@@ -87,7 +87,7 @@ function changeStartTime(e) {
   for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
-      removeLine(routeName);
+      index.remove_line(routeName);
       addLine(routeName);
     }
   }
@@ -102,7 +102,7 @@ function changeDirection(e) {
   for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
-      removeLine(routeName);
+      index.remove_line(routeName);
       addLine(routeName);
     }
   }
@@ -115,17 +115,7 @@ function changeSelectedRoutes(e) {
   if (e.target.checked) {
     addLine(e.target.name);
   } else {
-    removeLine(e.target.name);
-  }
-}
-
-/**
- * @param {string} routeId
- */
-function removeLine(routeId) {
-  if (routeId in globals.polylines) {
-    globals.polylines[routeId].remove();
-    delete globals.polylines[routeId];
+    index.remove_line(e.target.name);
   }
 }
 
