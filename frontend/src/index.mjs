@@ -1,12 +1,5 @@
-import {
-  compare_times,
-  time_from_minutes,
-  parse_time,
-  get_route_data,
-  format_start_time,
-} from "./frontend.mjs";
+import { format_start_time } from "./frontend.mjs";
 import globals from "./globals.mjs";
-import * as line from "./line.mjs";
 import * as _document from "../plinth/plinth/browser/document.mjs";
 import * as element from "../plinth/plinth/browser/element.mjs";
 import * as map from "./frontend/leaflet/map.mjs";
@@ -48,7 +41,7 @@ addEventListener("load", () => {
 
   for (const checkbox of index.list_route_checkboxes()) {
     if (checkbox.checked) {
-      addLine(checkbox.name);
+      index.add_line(checkbox.name);
     }
   }
 
@@ -88,7 +81,7 @@ function changeStartTime(e) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
       index.remove_line(routeName);
-      addLine(routeName);
+      index.add_line(routeName);
     }
   }
 }
@@ -103,7 +96,7 @@ function changeDirection(e) {
     if (checkbox.checked) {
       const routeName = checkbox.name;
       index.remove_line(routeName);
-      addLine(routeName);
+      index.add_line(routeName);
     }
   }
 }
@@ -113,36 +106,9 @@ function changeDirection(e) {
  */
 function changeSelectedRoutes(e) {
   if (e.target.checked) {
-    addLine(e.target.name);
+    index.add_line(e.target.name);
   } else {
     index.remove_line(e.target.name);
-  }
-}
-
-/**
- * @param {string} routeId
- */
-async function addLine(routeId) {
-  const route = await get_route_data(routeId);
-  const startTimeObject = time_from_minutes(globals.startTime);
-  const trip = route.trips
-    .toSorted((a, b) => {
-      const aTime = parse_time(a.start_time);
-      const bTime = parse_time(b.start_time);
-      return compare_times(aTime, bTime);
-    })
-    .find((trip) => {
-      if (trip.direction !== globals.direction) {
-        return false;
-      }
-
-      const tripStartTime = parse_time(trip.start_time);
-
-      return compare_times(startTimeObject, tripStartTime) < 0;
-    });
-
-  if (trip) {
-    line.add_to_map(routeId, { points: trip.points, color: route.color });
   }
 }
 

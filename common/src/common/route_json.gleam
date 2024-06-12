@@ -1,4 +1,4 @@
-import common/direction.{type Direction}
+import common/direction
 import common/route.{type Route}
 import common/time_of_day.{type TimeOfDay}
 import gleam/json
@@ -13,7 +13,7 @@ pub type TripJson {
     points: List(PointJson),
     stops: List(StopJson),
     start_time: TimeOfDay,
-    direction: Direction,
+    direction: Int,
   )
 }
 
@@ -34,7 +34,7 @@ pub fn from_route(route: Route) -> RouteJson {
           StopJson(stop.id, stop.arrival_time, stop.departure_time)
         }),
         trip.start_time,
-        trip.direction,
+        direction.to_int(trip.direction),
       )
     }),
     route.color,
@@ -50,7 +50,7 @@ pub fn serialize(route: RouteJson) -> String {
       json.array(route.trips, fn(trip) {
         json.object([
           #("start_time", json.string(time_of_day.present(trip.start_time))),
-          #("direction", json.int(direction.to_int(trip.direction))),
+          #("direction", json.int(trip.direction)),
           #(
             "points",
             json.array(trip.points, of: fn(point) {

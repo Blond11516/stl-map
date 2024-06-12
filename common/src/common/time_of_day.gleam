@@ -28,11 +28,7 @@ pub fn compare(a: TimeOfDay, b: TimeOfDay) -> Order {
   let total_a_seconds = a.hour * 3600 + a.minute * 60 + a.second
   let total_b_seconds = b.hour * 3600 + b.minute * 60 + b.second
 
-  case total_a_seconds - total_b_seconds {
-    n if n < 0 -> order.Lt
-    n if n > 0 -> order.Gt
-    _ -> order.Eq
-  }
+  int.compare(total_a_seconds, total_b_seconds)
 }
 
 pub fn as_minutes(time_of_day: TimeOfDay) -> Int {

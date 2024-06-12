@@ -1,34 +1,13 @@
 import common/route_json.{type RouteJson}
+import common/time_of_day.{type TimeOfDay, TimeOfDay}
 import gleam/int
 import gleam/javascript/promise.{type Promise}
-import gleam/string
 
-pub type Time {
-  Time(hour: Int, minute: Int, second: Int)
-}
-
-pub fn compare_times(a: Time, b: Time) -> Int {
-  let total_a_seconds = a.hour + a.minute + a.second
-  let total_b_seconds = b.hour + b.minute + b.second
-
-  total_a_seconds - total_b_seconds
-}
-
-pub fn time_from_minutes(total_minutes: Int) -> Time {
+pub fn time_from_minutes(total_minutes: Int) -> TimeOfDay {
   let hours = total_minutes / 60
   let assert Ok(minutes) = int.modulo(total_minutes, 60)
 
-  Time(hours, minutes, 0)
-}
-
-pub fn parse_time(raw: String) -> Time {
-  let assert [hour, minute, second] = string.split(raw, ":")
-
-  let assert Ok(hour) = int.parse(hour)
-  let assert Ok(minute) = int.parse(minute)
-  let assert Ok(second) = int.parse(second)
-
-  Time(hour, minute, second)
+  TimeOfDay(hours, minutes, 0)
 }
 
 pub fn get_route_data(route_id: String) -> Promise(RouteJson) {

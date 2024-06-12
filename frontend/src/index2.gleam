@@ -1,7 +1,13 @@
+import common/route.{ShapePoint}
+import common/time_of_day
+import frontend
 import frontend/globals
 import gleam/javascript/array.{type Array}
+import gleam/javascript/promise.{type Promise}
+import gleam/list
 import gleam/option.{Some}
-import line
+import gleam/order.{Lt}
+import line.{Line}
 import plinth/browser/document
 import plinth/browser/element_type.{type Element}
 import plinth/browser/object
@@ -35,6 +41,37 @@ pub fn list_route_checkboxes() -> Array(Element) {
 //     }
 //   })
 // }
+
+pub fn add_line(route_id: String) -> Promise(Nil) {
+  let route_data_promise = frontend.get_route_data(route_id)
+  use route <- promise.map(route_data_promise)
+
+  let start_time = frontend.time_from_minutes(globals.get_start_time())
+
+  let trip =
+    route.trips
+    |> list.sort(fn(a, b) { time_of_day.compare(a.start_time, b.start_time) })
+    |> list.find(fn(trip) {
+      case globals.get_direction() == trip.direction {
+        False -> False
+        True -> {
+          time_of_day.compare(start_time, trip.start_time) == Lt
+        }
+      }
+    })
+
+  case trip {
+    Ok(trip) -> {
+      let points =
+        list.map(trip.points, fn(point_json) {
+          let assert [lat, lon] = point_json
+          ShapePoint(lat, lon)
+        })
+      line.add_to_map(route_id, Line(points, route.color))
+    }
+    Error(_) -> Nil
+  }
+}
 
 pub fn remove_line(route_id: String) -> Nil {
   let polylines = globals.get_polylines()
