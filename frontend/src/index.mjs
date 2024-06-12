@@ -9,20 +9,33 @@ import globals from "./globals.mjs";
 import * as line from "./line.mjs";
 import * as _document from "../plinth/plinth/browser/document.mjs";
 import * as element from "../plinth/plinth/browser/element.mjs";
+import * as map from "./frontend/leaflet/map.mjs";
+import * as latLng from "./frontend/leaflet/lat_lng.mjs";
+import * as tileLayer from "./frontend/leaflet/tile_layer.mjs";
 
 const formId = "routes-form";
 
 addEventListener("load", () => {
   const levisLat = 46.736269;
   const levisLon = -71.2535253;
-  globals.map = L.map("map").setView([levisLat, levisLon], 11.65);
+
+  globals.map = map.new$("map");
+  globals.map = map.set_view(
+    globals.map,
+    latLng.new$(levisLat, levisLon),
+    11.65
+  );
 
   // TODO implement OSM usage policies: https://operations.osmfoundation.org/policies/tiles/
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(globals.map);
+  const osmTileLayer = tileLayer.new$(
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }
+  );
+  tileLayer.add_to(osmTileLayer, globals.map);
 
   const form = _document.get_element_by_id(formId)[0];
 
