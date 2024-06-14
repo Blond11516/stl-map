@@ -65,7 +65,7 @@ function changeRoutes(e) {
       changeDirection(e);
       break;
     default:
-      changeSelectedRoutes(e);
+      index.change_selected_routes(e);
       break;
   }
 }
@@ -82,17 +82,6 @@ function changeDirection(e) {
       index.remove_line(routeName);
       index.add_line(routeName);
     }
-  }
-}
-
-/**
- * @param {Event} e
- */
-function changeSelectedRoutes(e) {
-  if (e.target.checked) {
-    index.add_line(e.target.name);
-  } else {
-    index.remove_line(e.target.name);
   }
 }
 

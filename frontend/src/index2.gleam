@@ -95,3 +95,13 @@ pub fn remove_line(route_id: String) -> Nil {
     False -> Nil
   }
 }
+
+pub fn change_selected_routes(e: Event) -> Nil {
+  case e.target.checked {
+    True -> {
+      add_line(e.target.name)
+      Nil
+    }
+    False -> remove_line(e.target.name)
+  }
+}
