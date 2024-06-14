@@ -33,7 +33,7 @@ addEventListener("load", () => {
 
   const form = _document.get_element_by_id(formId)[0];
 
-  element.add_event_listener(form, "change", changeRoutes);
+  element.add_event_listener(form, "change", index.change_routes);
 
   globals.direction = parseInt(
     _document.query_selector("input[name=direction]:checked")[0].value
@@ -52,23 +52,23 @@ addEventListener("load", () => {
   globals.startTimePreview.textContent = format_start_time(globals.startTime);
 });
 
-/**
- * @param {Event} e
- * @listens Event
- */
-function changeRoutes(e) {
-  switch (e.target.name) {
-    case "startAfter":
-      index.change_start_time(e);
-      break;
-    case "direction":
-      index.change_direction(e);
-      break;
-    default:
-      index.change_selected_routes(e);
-      break;
-  }
-}
+// /**
+//  * @param {Event} e
+//  * @listens Event
+//  */
+// function changeRoutes(e) {
+//   switch (e.target.name) {
+//     case "startAfter":
+//       index.change_start_time(e);
+//       break;
+//     case "direction":
+//       index.change_direction(e);
+//       break;
+//     default:
+//       index.change_selected_routes(e);
+//       break;
+//   }
+// }
 
 // /**
 //  * @param {Event} e

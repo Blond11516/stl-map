@@ -124,3 +124,11 @@ pub fn change_direction(e: Event) -> Nil {
     }
   })
 }
+
+pub fn change_routes(e: Event) -> Nil {
+  case e.target.name {
+    "startAfter" -> change_start_time(e)
+    "direction" -> change_direction(e)
+    _ -> change_selected_routes(e)
+  }
+}
