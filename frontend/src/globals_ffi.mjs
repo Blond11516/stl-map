@@ -4,6 +4,10 @@ export function get_start_time_preview() {
   return globals.startTimePreview;
 }
 
+export function set_start_time_preview(preview) {
+  globals.startTimePreview = preview;
+}
+
 export function get_start_time() {
   return globals.startTime;
 }
@@ -22,4 +26,8 @@ export function get_direction() {
 
 export function set_direction(direction) {
   globals.direction = direction;
+}
+
+export function set_map(map) {
+  globals.map = map;
 }
