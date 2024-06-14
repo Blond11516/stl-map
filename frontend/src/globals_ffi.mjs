@@ -19,3 +19,7 @@ export function get_polylines() {
 export function get_direction() {
   return globals.direction;
 }
+
+export function set_direction(direction) {
+  globals.direction = direction;
+}

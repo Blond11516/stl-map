@@ -105,3 +105,22 @@ pub fn change_selected_routes(e: Event) -> Nil {
     False -> remove_line(e.target.name)
   }
 }
+
+pub fn change_direction(e: Event) -> Nil {
+  let assert Ok(direction) = int.parse(e.target.value)
+  globals.set_direction(direction)
+
+  list_route_checkboxes()
+  |> array.to_list()
+  |> list.each(fn(checkbox) {
+    case checkbox.checked {
+      True -> {
+        let route_name = checkbox.name
+        remove_line(route_name)
+        add_line(route_name)
+        Nil
+      }
+      False -> Nil
+    }
+  })
+}

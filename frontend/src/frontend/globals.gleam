@@ -15,3 +15,6 @@ pub fn get_polylines() -> Object
 
 @external(javascript, "../globals_ffi.mjs", "get_direction")
 pub fn get_direction() -> Int
+
+@external(javascript, "../globals_ffi.mjs", "set_direction")
+pub fn set_direction(direction: Int) -> Nil
