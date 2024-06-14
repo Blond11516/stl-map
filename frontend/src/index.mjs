@@ -52,39 +52,6 @@ addEventListener("load", () => {
   globals.startTimePreview.textContent = format_start_time(globals.startTime);
 });
 
-// /**
-//  * @param {Event} e
-//  * @listens Event
-//  */
-// function changeRoutes(e) {
-//   switch (e.target.name) {
-//     case "startAfter":
-//       index.change_start_time(e);
-//       break;
-//     case "direction":
-//       index.change_direction(e);
-//       break;
-//     default:
-//       index.change_selected_routes(e);
-//       break;
-//   }
-// }
-
-// /**
-//  * @param {Event} e
-//  */
-// function changeDirection(e) {
-//   globals.direction = parseInt(e.target.value);
-
-//   for (const checkbox of index.list_route_checkboxes()) {
-//     if (checkbox.checked) {
-//       const routeName = checkbox.name;
-//       index.remove_line(routeName);
-//       index.add_line(routeName);
-//     }
-//   }
-// }
-
 /**
  * @typedef {Object} Time
  * @property {number} hour
