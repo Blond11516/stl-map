@@ -1,6 +1,7 @@
 import common/direction
 import common/route.{type Route, Route, Shape, ShapePoint, Stop, Trip}
 import common/time_of_day.{type TimeOfDay}
+import gleam/dict
 import gleam/int
 import gleam/io
 import gleam/list
@@ -44,19 +45,31 @@ pub fn assemble_from_records(
   shape_records: List(ShapeRecord),
   stop_time_records: List(StopTimeRecord),
 ) -> List(Route) {
+  let trip_records_by_route_id =
+    list.group(trip_records, fn(trip_record) { trip_record.route_id })
+
+  let shape_records_by_shape_id =
+    list.group(shape_records, fn(shape_record) { shape_record.shape_id })
+
+  let stop_time_records_by_trip_id =
+    list.group(stop_time_records, fn(stop_time_record) {
+      stop_time_record.trip_id
+    })
+
   list.map(route_records, fn(route_record) {
     io.println("Processing route " <> route_record.route_id)
+
+    let assert Ok(current_route_trip_records) =
+      dict.get(trip_records_by_route_id, route_record.route_id)
+
     let trips =
-      trip_records
-      |> list.filter(fn(trip_record) {
-        trip_record.route_id == route_record.route_id
-      })
+      current_route_trip_records
       |> list.map(fn(trip_record) {
+        let assert Ok(current_trip_shape_records) =
+          dict.get(shape_records_by_shape_id, trip_record.shape_id)
+
         let shape_points =
-          shape_records
-          |> list.filter(fn(shape_record) {
-            shape_record.shape_id == trip_record.shape_id
-          })
+          current_trip_shape_records
           |> list.sort(by: fn(left, right) {
             int.compare(left.shape_pt_sequence, right.shape_pt_sequence)
           })
@@ -64,11 +77,11 @@ pub fn assemble_from_records(
             ShapePoint(shape_record.shape_pt_lat, shape_record.shape_pt_lon)
           })
 
+        let assert Ok(current_trip_stop_time_records) =
+          dict.get(stop_time_records_by_trip_id, trip_record.trip_id)
+
         let stops =
-          stop_time_records
-          |> list.filter(fn(stop_time_record) {
-            stop_time_record.trip_id == trip_record.trip_id
-          })
+          current_trip_stop_time_records
           |> list.sort(by: fn(left, right) {
             int.compare(left.stop_sequence, right.stop_sequence)
           })
