@@ -31,6 +31,7 @@ jobs:
         with:
           otp-version: false
           version-file: .tool-versions
+          version-type: strict
 
       - uses: extractions/setup-just@v1
         with:
