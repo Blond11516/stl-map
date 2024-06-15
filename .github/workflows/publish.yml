@@ -27,6 +27,11 @@ jobs:
 
       - uses: oven-sh/setup-bun@v1
 
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: false
+          version-file: .tool-versions
+
       - uses: extractions/setup-just@v1
         with:
           just-version: 1.26.0
