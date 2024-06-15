@@ -1,0 +1,2 @@
+﻿feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version,feed_contact_email
+Société de transport de Lévis,https://www.stlevis.ca/,fr,20240311,20240825,20240529,saeiv@stlevis.ca

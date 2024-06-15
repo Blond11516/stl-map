@@ -25,19 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: "27.0"
-          gleam-version: "1.2.0"
-          rebar3-version: "3.23.0"
+      - uses: oven-sh/setup-bun@v1
 
       - uses: extractions/setup-just@v1
         with:
           just-version: 1.26.0
 
-      - run: just deps_download
+      - run: gleam deps download
 
-      - run: just build
+      - run: gleam build
 
       - run: just gen
 

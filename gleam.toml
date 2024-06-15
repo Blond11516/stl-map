@@ -1,0 +1,32 @@
+name = "stl_map"
+target = "javascript"
+version = "1.0.0"
+gleam = ">= 0.32.0"
+
+# Fill out these fields if you intend to generate HTML documentation or publish
+# your project to the Hex package manager.
+#
+# description = ""
+# licences = ["Apache-2.0"]
+# repository = { type = "github", user = "username", repo = "project" }
+# links = [{ title = "Website", href = "https://gleam.run" }]
+#
+# For a full reference of all the available options, you can have a look at
+# https://gleam.run/writing-gleam/gleam-toml/.
+
+[dependencies]
+gleam_stdlib = "0.37.0"
+simplifile = "1.7.0"
+lustre = "4.2.2"
+gleam_json = "1.0.1"
+birl = "1.6.1"
+gleam_javascript = "0.8.0"
+conversation = "1.4.3"
+# plinth = "0.3.0"
+plinth = { path = "../plinth" }
+
+[dev-dependencies]
+lustre_ssg = "0.6.1"
+
+[javascript]
+runtime = "bun"

@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "ES2020",
-    "lib": ["ES2020", "ESNext.Array", "DOM"]
-  },
-  "include": ["src/*.mjs"]
-}
