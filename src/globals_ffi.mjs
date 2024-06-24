@@ -20,12 +20,20 @@ export function get_polylines() {
   return globals.polylines;
 }
 
+export function set_polylines(polylines) {
+  globals.polylines = polylines;
+}
+
 export function get_direction() {
   return globals.direction;
 }
 
 export function set_direction(direction) {
   globals.direction = direction;
+}
+
+export function get_map() {
+  return globals.map;
 }
 
 export function set_map(map) {

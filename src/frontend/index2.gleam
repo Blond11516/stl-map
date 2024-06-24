@@ -1,23 +1,21 @@
-import common/route.{ShapePoint}
 import common/time_of_day
 import frontend/frontend
 import frontend/globals
 import frontend/leaflet/lat_lng
 import frontend/leaflet/map
+import frontend/leaflet/polyline
 import frontend/leaflet/tile_layer
-import frontend/line.{Line}
+import gleam/dynamic
 import gleam/int
 import gleam/javascript/array.{type Array}
 import gleam/javascript/promise.{type Promise}
 import gleam/list
-import gleam/option.{Some}
 import gleam/order.{Lt}
 import gleam/result
 import plinth/browser/document
-import plinth/browser/element
-import plinth/browser/element_type.{type Element}
+import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
-import plinth/browser/object
+import plinth/javascript/object
 
 const form_id = "routes-form"
 
@@ -26,7 +24,12 @@ pub fn list_route_checkboxes() -> Array(Element) {
 }
 
 pub fn change_start_time(e: Event) -> Nil {
-  let assert Ok(start_time) = int.parse(e.target.value)
+  let assert Ok(start_time) =
+    e
+    |> event.target()
+    |> dynamic.unsafe_coerce()
+    |> element.value()
+    |> result.then(int.parse)
 
   element.set_text_content(
     globals.get_start_time_preview(),
@@ -37,9 +40,10 @@ pub fn change_start_time(e: Event) -> Nil {
   list_route_checkboxes()
   |> array.to_list()
   |> list.each(fn(checkbox) {
-    case checkbox.checked {
+    let checked = element.get_checked(checkbox)
+    case checked {
       True -> {
-        let route_name = checkbox.name
+        let assert Ok(route_name) = element.get_attribute(checkbox, "name")
         remove_line(route_name)
         add_line(route_name)
         Nil
@@ -72,9 +76,17 @@ pub fn add_line(route_id: String) -> Promise(Nil) {
       let points =
         list.map(trip.points, fn(point_json) {
           let assert [lat, lon] = point_json
-          ShapePoint(lat, lon)
+          lat_lng.new(lat, lon)
         })
-      line.add_to_map(route_id, Line(points, route.color))
+
+      let map = globals.get_map()
+
+      let route_polyline = polyline.new(array.from_list(points), route.color)
+      polyline.add_to(route_polyline, map)
+
+      globals.get_polylines()
+      |> object.set(route_id, route_polyline)
+      |> globals.set_polylines()
     }
     Error(_) -> Nil
   }
@@ -84,11 +96,11 @@ pub fn remove_line(route_id: String) -> Nil {
   let polylines = globals.get_polylines()
   case object.in(polylines, route_id) {
     True -> {
-      let assert Some(polyline) =
+      let assert Ok(polyline) =
         globals.get_polylines()
         |> object.get(route_id)
 
-      line.remove(polyline)
+      polyline.remove(polyline)
 
       globals.get_polylines()
       |> object.delete(route_id)
@@ -100,25 +112,35 @@ pub fn remove_line(route_id: String) -> Nil {
 }
 
 pub fn change_selected_routes(e: Event) -> Nil {
-  case e.target.checked {
+  let checkbox = e |> event.target() |> dynamic.unsafe_coerce()
+  let checked = element.get_checked(checkbox)
+  let assert Ok(name) = element.get_attribute(checkbox, "name")
+  case checked {
     True -> {
-      add_line(e.target.name)
+      add_line(name)
       Nil
     }
-    False -> remove_line(e.target.name)
+    False -> remove_line(name)
   }
 }
 
 pub fn change_direction(e: Event) -> Nil {
-  let assert Ok(direction) = int.parse(e.target.value)
+  let assert Ok(direction) =
+    e
+    |> event.target()
+    |> dynamic.unsafe_coerce()
+    |> element.get_attribute("value")
+    |> result.then(int.parse)
   globals.set_direction(direction)
 
   list_route_checkboxes()
   |> array.to_list()
   |> list.each(fn(checkbox) {
-    case checkbox.checked {
+    let checked = element.get_checked(checkbox)
+    let assert Ok(name) = element.get_attribute(checkbox, "name")
+    case checked {
       True -> {
-        let route_name = checkbox.name
+        let route_name = name
         remove_line(route_name)
         add_line(route_name)
         Nil
@@ -129,7 +151,12 @@ pub fn change_direction(e: Event) -> Nil {
 }
 
 pub fn change_routes(e: Event) -> Nil {
-  case e.target.name {
+  let assert Ok(name) =
+    e
+    |> event.target()
+    |> dynamic.unsafe_coerce()
+    |> element.get_attribute("name")
+  case name {
     "startAfter" -> change_start_time(e)
     "direction" -> change_direction(e)
     _ -> change_selected_routes(e)
@@ -167,13 +194,20 @@ pub fn init() -> Nil {
 
   let _ =
     document.query_selector("input[name=direction]:checked")
-    |> result.try(fn(input) { int.parse(input.value) })
+    |> result.try(fn(input) {
+      let assert Ok(value) =
+        input |> element.get_attribute("value") |> result.map(int.parse)
+      value
+    })
     |> result.map(globals.set_direction)
 
   list_route_checkboxes()
   |> array.to_list()
-  |> list.filter(fn(checkbox) { checkbox.checked })
-  |> list.each(fn(checkbox) { add_line(checkbox.name) })
+  |> list.filter(element.get_checked)
+  |> list.each(fn(checkbox) {
+    let assert Ok(name) = element.get_attribute(checkbox, "name")
+    add_line(name)
+  })
 
   let assert Ok(start_time_preview) =
     document.get_element_by_id("startTimePreview")
@@ -182,7 +216,8 @@ pub fn init() -> Nil {
 
   let assert Ok(start_time) =
     document.query_selector("input[name=startAfter]")
-    |> result.try(fn(input) { int.parse(input.value) })
+    |> result.then(element.value)
+    |> result.then(int.parse)
 
   globals.set_start_time(start_time)
 
