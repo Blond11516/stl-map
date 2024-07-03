@@ -1,5 +1,5 @@
-import common/direction.{type Direction}
-import common/time_of_day.{type TimeOfDay}
+import stl_map/common/direction.{type Direction}
+import stl_map/common/time_of_day.{type TimeOfDay}
 
 pub type Route {
   Route(id: String, name: String, trips: List(Trip), color: String)

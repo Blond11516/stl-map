@@ -1,4 +1,3 @@
-import common/time_of_day
 import gleam/dict
 import gleam/dynamic
 import gleam/int
@@ -10,6 +9,7 @@ import gleam/result
 import plinth/browser/document
 import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
+import stl_map/common/time_of_day
 import stl_map/frontend/frontend
 import stl_map/frontend/globals
 import stl_map/frontend/leaflet/lat_lng

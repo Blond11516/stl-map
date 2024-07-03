@@ -1,9 +1,9 @@
-import common/time_of_day
 import gleam/float
 import gleam/int
 import gleam/list
 import gleam/string
 import simplifile
+import stl_map/common/time_of_day
 import stl_map/routes_generator/gtfs.{
   type RouteRecord, type ShapeRecord, type StopTimeRecord, type TripRecord,
   RouteRecord, ShapeRecord, StopTimeRecord, TripRecord,

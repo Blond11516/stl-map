@@ -1,10 +1,10 @@
-import common/route.{type Route}
-import common/time_of_day
 import gleam/int
 import gleam/list
 import gleam/string
 import lustre/attribute
 import lustre/element/html.{html}
+import stl_map/common/route.{type Route}
+import stl_map/common/time_of_day
 
 pub fn view(routes: List(Route)) {
   html([], [head(), body(routes)])

@@ -1,7 +1,7 @@
-import common/route_json.{type RouteJson}
-import common/time_of_day.{type TimeOfDay, TimeOfDay}
 import gleam/int
 import gleam/javascript/promise.{type Promise}
+import stl_map/common/route_json.{type RouteJson}
+import stl_map/common/time_of_day.{type TimeOfDay, TimeOfDay}
 
 pub fn time_from_minutes(total_minutes: Int) -> TimeOfDay {
   let hours = total_minutes / 60
