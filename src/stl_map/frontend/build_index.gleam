@@ -1,8 +1,7 @@
-import gleam/list
-import simplifile
-import stl_map/route_json
+import lustre/ssg
 import stl_map/routes_generator/gtfs
 import stl_map/routes_generator/gtfs/loader as gtfs_loader
+import stl_map/routes_generator/view
 import stl_map/timed.{timed}
 
 pub fn main() {
@@ -22,16 +21,7 @@ pub fn main() {
       )
     })
 
-  timed("build app files", fn() {
-    let _ = simplifile.create_directory("./generated_assets/routes")
-
-    list.each(routes, fn(route) {
-      route
-      |> route_json.from_route()
-      |> route_json.serialize()
-      |> simplifile.write(
-        to: "./generated_assets/routes/" <> route.id <> ".json",
-      )
-    })
-  })
+  ssg.new("./generated_assets/index")
+  |> ssg.add_static_route("/", view.view(routes))
+  |> ssg.build()
 }
