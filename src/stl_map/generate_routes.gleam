@@ -5,9 +5,9 @@ import gleam/int
 import gleam/io
 import gleam/list
 import lustre/ssg
-import site_generator/gtfs
-import site_generator/gtfs/loader as gtfs_loader
-import site_generator/view
+import stl_map/routes_generator/gtfs
+import stl_map/routes_generator/gtfs/loader as gtfs_loader
+import stl_map/routes_generator/view
 
 pub fn main() {
   let route_records = timed("load_routes", fn() { gtfs_loader.load_routes() })
