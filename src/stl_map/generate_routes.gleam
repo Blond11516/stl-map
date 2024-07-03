@@ -30,7 +30,7 @@ pub fn main() {
     let ssg_config =
       ssg.new("./site")
       |> ssg.add_static_route("/", view.view(routes))
-      |> ssg.add_static_dir("assets")
+      |> ssg.add_static_dir("static_assets")
 
     list.fold(routes, ssg_config, fn(ssg_config, route) {
       ssg.add_static_asset(
