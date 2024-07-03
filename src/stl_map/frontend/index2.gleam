@@ -9,13 +9,13 @@ import gleam/result
 import plinth/browser/document
 import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
-import stl_map/common/time_of_day
 import stl_map/frontend/frontend
 import stl_map/frontend/globals
 import stl_map/frontend/leaflet/lat_lng
 import stl_map/frontend/leaflet/map
 import stl_map/frontend/leaflet/polyline
 import stl_map/frontend/leaflet/tile_layer
+import stl_map/time_of_day
 
 const form_id = "routes-form"
 

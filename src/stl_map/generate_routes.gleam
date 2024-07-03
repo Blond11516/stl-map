@@ -4,7 +4,7 @@ import gleam/int
 import gleam/io
 import gleam/list
 import lustre/ssg
-import stl_map/common/route_json
+import stl_map/route_json
 import stl_map/routes_generator/gtfs
 import stl_map/routes_generator/gtfs/loader as gtfs_loader
 import stl_map/routes_generator/view

@@ -1,8 +1,8 @@
 import gleam/json
 import gleam/list
-import stl_map/common/direction
-import stl_map/common/route.{type Route}
-import stl_map/common/time_of_day.{type TimeOfDay}
+import stl_map/direction
+import stl_map/route.{type Route}
+import stl_map/time_of_day.{type TimeOfDay}
 
 pub type RouteJson {
   RouteJson(name: String, trips: List(TripJson), color: String)
