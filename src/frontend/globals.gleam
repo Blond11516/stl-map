@@ -1,6 +1,14 @@
 import frontend/leaflet/map.{type Map}
+import frontend/leaflet/polyline.{type Polyline}
+import gleam/dict.{type Dict}
 import plinth/browser/element.{type Element}
-import plinth/javascript/object.{type Object}
+
+type PolylinesDict =
+  Dict(String, Polyline)
+
+pub fn init() -> Nil {
+  set_polylines(dict.new())
+}
 
 @external(javascript, "../globals_ffi.mjs", "get_start_time_preview")
 pub fn get_start_time_preview() -> Element
@@ -15,10 +23,10 @@ pub fn get_start_time() -> Int
 pub fn set_start_time(value: Int) -> Nil
 
 @external(javascript, "../globals_ffi.mjs", "get_polylines")
-pub fn get_polylines() -> Object
+pub fn get_polylines() -> PolylinesDict
 
 @external(javascript, "../globals_ffi.mjs", "set_polylines")
-pub fn set_polylines(polylines: Object) -> Nil
+pub fn set_polylines(polylines: PolylinesDict) -> Nil
 
 @external(javascript, "../globals_ffi.mjs", "get_direction")
 pub fn get_direction() -> Int

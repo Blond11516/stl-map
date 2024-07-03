@@ -5,6 +5,7 @@ import frontend/leaflet/lat_lng
 import frontend/leaflet/map
 import frontend/leaflet/polyline
 import frontend/leaflet/tile_layer
+import gleam/dict
 import gleam/dynamic
 import gleam/int
 import gleam/javascript/array.{type Array}
@@ -15,7 +16,6 @@ import gleam/result
 import plinth/browser/document
 import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
-import plinth/javascript/object
 
 const form_id = "routes-form"
 
@@ -85,7 +85,7 @@ pub fn add_line(route_id: String) -> Promise(Nil) {
       polyline.add_to(route_polyline, map)
 
       globals.get_polylines()
-      |> object.set(route_id, route_polyline)
+      |> dict.insert(route_id, route_polyline)
       |> globals.set_polylines()
     }
     Error(_) -> Nil
@@ -94,16 +94,16 @@ pub fn add_line(route_id: String) -> Promise(Nil) {
 
 pub fn remove_line(route_id: String) -> Nil {
   let polylines = globals.get_polylines()
-  case object.in(polylines, route_id) {
+  case dict.has_key(polylines, route_id) {
     True -> {
       let assert Ok(polyline) =
         globals.get_polylines()
-        |> object.get(route_id)
+        |> dict.get(route_id)
 
       polyline.remove(polyline)
 
       globals.get_polylines()
-      |> object.delete(route_id)
+      |> dict.delete(route_id)
 
       Nil
     }
@@ -170,6 +170,8 @@ const levis_lon = -71.2535253
 const initial_zoom = 11.65
 
 pub fn init() -> Nil {
+  globals.init()
+
   let map =
     map.new("map")
     |> map.set_view(lat_lng.new(levis_lat, levis_lon), initial_zoom)
