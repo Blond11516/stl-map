@@ -20,5 +20,5 @@ pub fn format_start_time(total_minutes: Int) -> String {
   int.to_string(time.hour) <> ":" <> int.to_string(time.minute)
 }
 
-@external(javascript, "../frontend_ffi.mjs", "fetch_route")
+@external(javascript, "../../frontend_ffi.mjs", "fetch_route")
 fn fetch_route(route_id: String) -> Promise(RouteJson)

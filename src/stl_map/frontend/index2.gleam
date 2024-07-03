@@ -1,10 +1,4 @@
 import common/time_of_day
-import frontend/frontend
-import frontend/globals
-import frontend/leaflet/lat_lng
-import frontend/leaflet/map
-import frontend/leaflet/polyline
-import frontend/leaflet/tile_layer
 import gleam/dict
 import gleam/dynamic
 import gleam/int
@@ -16,6 +10,12 @@ import gleam/result
 import plinth/browser/document
 import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
+import stl_map/frontend/frontend
+import stl_map/frontend/globals
+import stl_map/frontend/leaflet/lat_lng
+import stl_map/frontend/leaflet/map
+import stl_map/frontend/leaflet/polyline
+import stl_map/frontend/leaflet/tile_layer
 
 const form_id = "routes-form"
 
