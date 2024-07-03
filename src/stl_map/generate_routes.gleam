@@ -28,9 +28,8 @@ pub fn main() {
 
   timed("build app files", fn() {
     let ssg_config =
-      ssg.new("./site")
+      ssg.new("./generated_assets/routes")
       |> ssg.add_static_route("/", view.view(routes))
-      |> ssg.add_static_dir("static_assets")
 
     list.fold(routes, ssg_config, fn(ssg_config, route) {
       ssg.add_static_asset(
