@@ -22,8 +22,7 @@ gleam_json = "1.0.1"
 birl = "1.7.1"
 gleam_javascript = "0.10.0"
 conversation = "1.4.3"
-# plinth = "0.4.7"
-plinth = { path = "../plinth" }
+plinth = "0.4.8"
 
 [dev-dependencies]
 lustre_ssg = "0.8.0"
