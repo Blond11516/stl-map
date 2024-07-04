@@ -25,7 +25,7 @@ copy_js: create_public_dir
 build_js: && copy_js
 	gleam run -m stl_map/build/js
 
-copy_static_assets:
+copy_static_assets: create_public_dir
 	cp -r static_assets/* {{PUBLIC_DIR}}
 
 build: && copy_index copy_routes copy_static_assets copy_js
