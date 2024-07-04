@@ -1,5 +1,5 @@
 import { to_list } from "../gleam_javascript/gleam/javascript/array.mjs";
-import { parse_time_of_day } from "./common/time_of_day.mjs";
+import { parse_time_of_day } from "./stl_map/time_of_day.mjs";
 
 export function fetch_route(route_id) {
   return fetch(`./${route_id.toLowerCase()}.json`)

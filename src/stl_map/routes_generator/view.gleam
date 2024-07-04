@@ -36,10 +36,7 @@ fn head() {
     ),
     html.link([attribute.rel("stylesheet"), attribute.href("css/reset.css")]),
     html.link([attribute.rel("stylesheet"), attribute.href("css/index.css")]),
-    html.script(
-      [attribute.type_("module"), attribute.src("js/stl_map/index.mjs")],
-      "",
-    ),
+    html.script([attribute.type_("module"), attribute.src("js/index.mjs")], ""),
   ])
 }
 
