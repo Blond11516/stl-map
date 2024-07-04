@@ -12,7 +12,8 @@ build_index: && copy_index
 	gleam run -m stl_map/build/index
 
 copy_routes: create_public_dir
-	cp dist/routes/* {{PUBLIC_DIR}}
+	mkdir -p {{PUBLIC_DIR}}/routes
+	cp dist/routes/* {{PUBLIC_DIR}}/routes
 
 build_routes: && copy_routes
 	gleam run -m stl_map/build/routes

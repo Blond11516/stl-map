@@ -2,7 +2,7 @@ import { to_list } from "../gleam_javascript/gleam/javascript/array.mjs";
 import { parse_time_of_day } from "./stl_map/time_of_day.mjs";
 
 export function fetch_route(route_id) {
-  return fetch(`./${route_id.toUpperCase()}.json`)
+  return fetch(`./routes/${route_id.toUpperCase()}.json`)
     .then((res) => res.json())
     .then((res) => {
       return {
