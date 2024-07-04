@@ -41,7 +41,7 @@ jobs:
 
       - run: gleam build
 
-      - run: just gen
+      - run: just build
 
       - uses: actions/upload-pages-artifact@v3
         with:
