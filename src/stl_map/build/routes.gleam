@@ -8,11 +8,11 @@ import stl_map/routes_generator/gtfs/loader as gtfs_loader
 import stl_map/timed.{timed}
 
 pub fn main() -> Nil {
-  gen(None)
+  build(None)
 }
 
-pub fn gen(routes: Option(List(Route))) -> Nil {
-  let _ = simplifile.create_directory("./generated_assets")
+pub fn build(routes: Option(List(Route))) -> Nil {
+  let _ = simplifile.create_directory("./dist")
 
   let routes =
     option.lazy_unwrap(routes, fn() {
@@ -35,15 +35,13 @@ pub fn gen(routes: Option(List(Route))) -> Nil {
     })
 
   timed("build app files", fn() {
-    let _ = simplifile.create_directory("./generated_assets/routes")
+    let _ = simplifile.create_directory("./dist/routes")
 
     list.each(routes, fn(route) {
       route
       |> route_json.from_route()
       |> route_json.serialize()
-      |> simplifile.write(
-        to: "./generated_assets/routes/" <> route.id <> ".json",
-      )
+      |> simplifile.write(to: "./dist/routes/" <> route.id <> ".json")
     })
   })
 }

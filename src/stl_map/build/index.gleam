@@ -7,10 +7,10 @@ import stl_map/routes_generator/view
 import stl_map/timed.{timed}
 
 pub fn main() -> Nil {
-  gen(None)
+  build(None)
 }
 
-pub fn gen(routes: Option(List(Route))) -> Nil {
+pub fn build(routes: Option(List(Route))) -> Nil {
   let routes =
     option.lazy_unwrap(routes, fn() {
       let route_records =
@@ -32,7 +32,7 @@ pub fn gen(routes: Option(List(Route))) -> Nil {
     })
 
   let _ =
-    ssg.new("./generated_assets/index")
+    ssg.new("./dist/index")
     |> ssg.add_static_route("/", view.view(routes))
     |> ssg.build()
 

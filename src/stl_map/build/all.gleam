@@ -1,6 +1,7 @@
 import gleam/option.{Some}
-import stl_map/gen/index
-import stl_map/gen/routes
+import stl_map/build/index
+import stl_map/build/js
+import stl_map/build/routes
 import stl_map/routes_generator/gtfs
 import stl_map/routes_generator/gtfs/loader as gtfs_loader
 import stl_map/timed.{timed}
@@ -22,6 +23,7 @@ pub fn main() {
       )
     })
 
-  index.gen(Some(routes))
-  routes.gen(Some(routes))
+  index.build(Some(routes))
+  routes.build(Some(routes))
+  js.build()
 }

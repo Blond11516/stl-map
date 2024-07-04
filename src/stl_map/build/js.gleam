@@ -1,12 +1,12 @@
 import esgleam
 
 pub fn main() -> Nil {
-  gen()
+  build()
 }
 
-pub fn gen() -> Nil {
+pub fn build() -> Nil {
   let _ =
-    esgleam.new("./generated_assets/js")
+    esgleam.new("./dist/js")
     |> esgleam.entry("stl_map/frontend/index2.gleam")
     |> esgleam.minify(True)
     |> esgleam.platform(esgleam.Browser)
