@@ -41,7 +41,13 @@ jobs:
 
       - run: gleam build
 
-      - run: just build
+      - run: just copy_static_assets
+
+      - run: just build_index
+
+      - run: just build_routes
+
+      - run: just build_js
 
       - uses: actions/upload-pages-artifact@v3
         with:
