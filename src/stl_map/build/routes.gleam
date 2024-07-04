@@ -1,5 +1,6 @@
 import gleam/list
 import gleam/option.{type Option, None}
+import gleam/string
 import simplifile
 import stl_map/route.{type Route}
 import stl_map/route_json
@@ -41,7 +42,9 @@ pub fn build(routes: Option(List(Route))) -> Nil {
       route
       |> route_json.from_route()
       |> route_json.serialize()
-      |> simplifile.write(to: "./dist/routes/" <> route.id <> ".json")
+      |> simplifile.write(
+        to: "./dist/routes/" <> string.uppercase(route.id) <> ".json",
+      )
     })
   })
 }
