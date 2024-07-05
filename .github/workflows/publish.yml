@@ -41,6 +41,9 @@ jobs:
 
       - run: gleam build
 
+      # It is necessary to run this step explicitely because the automatic install flow forces the Erlang code path
+      - run: gleam run -m esgleam/install
+
       - run: just copy_static_assets
 
       - run: just build_index
