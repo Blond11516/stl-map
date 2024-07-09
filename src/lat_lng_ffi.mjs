@@ -1,3 +1,5 @@
+import { LatLng } from "./leaflet-src.esm";
+
 export function _new(lat, lon) {
-  return L.latLng(lat, lon);
+  return new LatLng(lat, lon);
 }

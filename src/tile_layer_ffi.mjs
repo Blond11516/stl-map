@@ -1,5 +1,7 @@
+import { TileLayer } from "./leaflet-src.esm";
+
 export function _new(url, options) {
-  return L.tileLayer(url, options);
+  return new TileLayer(url, options);
 }
 
 export function add_to(tile_layer, map) {
