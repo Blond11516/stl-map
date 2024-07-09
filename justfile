@@ -33,4 +33,4 @@ build: && copy_index copy_routes copy_static_assets copy_js
 	gleam run -m stl_map/build/all
 
 serve:
-	python -m http.server -d {{PUBLIC_DIR}}
+	gleam run -m stl_map/serve

@@ -27,6 +27,10 @@ plinth = "0.4.8"
 [dev-dependencies]
 lustre_ssg = "0.8.0"
 esgleam = "0.6.0"
+glen = "2.2.0"
 
 [javascript]
-runtime = "bun"
+runtime = "deno"
+
+[javascript.deno]
+allow_all = true
