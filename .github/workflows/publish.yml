@@ -25,7 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v1
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version-file: .tool-versions
 
       - uses: erlef/setup-beam@v1
         with:
