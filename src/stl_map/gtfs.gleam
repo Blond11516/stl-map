@@ -3,43 +3,35 @@ import gleam/int
 import gleam/io
 import gleam/list
 import stl_map/direction
+import stl_map/gtfs/loader.{
+  type RouteRecord, type ShapeRecord, type StopTimeRecord, type TripRecord,
+}
 import stl_map/route.{type Route, Route, Shape, ShapePoint, Stop, Trip}
-import stl_map/time_of_day.{type TimeOfDay}
 
-pub type RouteRecord {
-  RouteRecord(route_id: String, route_short_name: String, route_color: String)
+pub fn load_routes() -> List(Route) {
+  let route_records = loader.load_routes()
+  io.println("Loaded route records")
+  let trip_records = loader.load_trips()
+  io.println("Loaded trip records")
+  let shape_records = loader.load_shapes()
+  io.println("Loaded shape records")
+  let stop_time_records = loader.load_stop_times()
+  io.println("Loaded stop time records")
+
+  io.println("Assembling routes")
+  let routes =
+    assemble_from_records(
+      route_records,
+      trip_records,
+      shape_records,
+      stop_time_records,
+    )
+  io.println("Finished assembling routes")
+
+  routes
 }
 
-pub type TripRecord {
-  TripRecord(
-    trip_id: String,
-    route_id: String,
-    trip_headsign: String,
-    shape_id: String,
-    direction_id: Int,
-  )
-}
-
-pub type ShapeRecord {
-  ShapeRecord(
-    shape_id: String,
-    shape_pt_lat: Float,
-    shape_pt_lon: Float,
-    shape_pt_sequence: Int,
-  )
-}
-
-pub type StopTimeRecord {
-  StopTimeRecord(
-    trip_id: String,
-    arrival_time: TimeOfDay,
-    departure_time: TimeOfDay,
-    stop_id: String,
-    stop_sequence: Int,
-  )
-}
-
-pub fn assemble_from_records(
+fn assemble_from_records(
   route_records: List(RouteRecord),
   trip_records: List(TripRecord),
   shape_records: List(ShapeRecord),
