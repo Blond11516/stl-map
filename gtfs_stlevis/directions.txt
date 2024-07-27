@@ -1,12 +1,12 @@
 ﻿route_id,agency_id,direction_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color,direction_name
-11,0,0,11,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/11,0091B3,FFFFFF,Terminus de la Traverse / Lauzon / UQAR / Hôtel-Dieu de Lévis
+11,0,0,11,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/11,0091B3,FFFFFF,Terminus de la Traverse / Hôtel-Dieu de Lévis / Lauzon / UQAR
 111,0,0,111,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/111,7E4082,FFFFFF,Pointe-Lévy / Juvénat Notre-Dame
 111,0,1,111,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/111,7E4082,FFFFFF,Saint-Romuald / Lauzon
 115,0,0,115,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/115,7E4082,FFFFFF,Vieux-Lévis
 115,0,1,115,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/115,7E4082,FFFFFF,Lauzon
 119,0,0,119,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/119,7E4082,FFFFFF,École Pointe-Lévy
 119,0,1,119,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/119,7E4082,FFFFFF,Lauzon
-11A,0,1,11A,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/11A,0091B3,FFFFFF,Terminus de la Traverse / Hôtel-Dieu de Lévis / UQAR / Lauzon
+11A,0,1,11A,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/11A,0091B3,FFFFFF,Terminus de la Traverse / UQAR / Lauzon / Hôtel-Dieu de Lévis
 125,0,0,125,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/125,7E4082,FFFFFF,Vieux-Lévis
 125,0,1,125,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/125,7E4082,FFFFFF,Lauzon
 126,0,0,126,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/126,7E4082,FFFFFF,Vieux-Lévis
@@ -23,6 +23,8 @@
 136,0,0,136,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/136,7E4082,FFFFFF,Vieux-Lévis
 136,0,1,136,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/136,7E4082,FFFFFF,Saint-David
 137,0,0,137,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/137,7E4082,FFFFFF,École Pointe-Lévy
+138,0,0,138,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/138,7E4082,FFFFFF,Vieux-Lévis
+138,0,1,138,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/138,7E4082,FFFFFF,Saint-David / Hadlow
 139,0,0,139,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/139,7E4082,FFFFFF,École Pointe-Lévy
 139,0,1,139,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/139,7E4082,FFFFFF,Saint-David
 15,0,0,15,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/15,0091B3,FFFFFF,Station Galeries Chagnon / Terminus de la Traverse
@@ -37,9 +39,11 @@
 221,0,0,221,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/221,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
 221,0,1,221,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/221,7E4082,FFFFFF,Saint-Nicolas - Bernières
 222,0,0,222,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/222,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
-222,0,1,222,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/222,7E4082,FFFFFF,Saint-Nicolas / Saint-Rédempteur
+222,0,1,222,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/222,7E4082,FFFFFF,Presqu'Île / Saint-Nicolas
 225,0,0,225,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/225,7E4082,FFFFFF,UQAR / Lévis centre
 225,0,1,225,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/225,7E4082,FFFFFF,Saint-Nicolas - Bernières
+229,0,0,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF,ESLE / C. hosp. P.-Gilbert
+229,0,1,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF,Saint-Nicolas - Bernières
 23,0,0,23,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23,0091B3,FFFFFF,Station de la Concorde
 23,0,1,23,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23,0091B3,FFFFFF,Saint-Nicolas - Village
 23E,0,0,23E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23E,FFA400,FFFFFF,Sainte-Foy centre
@@ -49,7 +53,7 @@
 232,0,0,232,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/232,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
 232,0,1,232,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/232,7E4082,FFFFFF,Presqu'Île / Saint-Nicolas - Roc-Pointe
 235,0,0,235,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/235,7E4082,FFFFFF,UQAR / Lévis centre
-235,0,1,235,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/235,7E4082,FFFFFF,Saint-Nicolas - Roc-Pointe
+235,0,1,235,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/235,7E4082,FFFFFF,Saint-Nicolas - Village
 24,0,0,24,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/24,4EA685,FFFFFF,PRB des Rivières
 24,0,1,24,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/24,4EA685,FFFFFF,Saint-Rédempteur
 24E,0,0,24E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/24E,FFA400,FFFFFF,Sainte-Foy centre
@@ -60,13 +64,11 @@
 242,0,1,242,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/242,7E4082,FFFFFF,Saint-Rédempteur
 245,0,0,245,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/245,7E4082,FFFFFF,UQAR / Lévis centre
 245,0,1,245,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/245,7E4082,FFFFFF,Saint-Rédempteur
-246,0,0,246,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/246,7E4082,FFFFFF,UQAR / Lévis centre
-246,0,1,246,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/246,7E4082,FFFFFF,Saint-Rédempteur
 31,0,1,31,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/31,0091B3,FFFFFF,Breakeyville / Station de la Concorde
 311,0,0,311,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/311,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
 311,0,1,311,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/311,7E4082,FFFFFF,Saint-Jean-Chrysostome / Breakeyville
 325,0,0,325,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/325,7E4082,FFFFFF,Lévis centre
-325,0,1,325,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/325,7E4082,FFFFFF,Saint-Romuald
+325,0,1,325,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/325,7E4082,FFFFFF,Saint-Romuald / Saint-Nicolas
 34,0,0,34,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/34,0091B3,FFFFFF,Station de la Concorde
 34,0,1,34,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/34,0091B3,FFFFFF,Saint-Romuald
 345,0,0,345,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/345,7E4082,FFFFFF,Lévis centre
@@ -96,23 +98,18 @@
 39,0,0,39,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/39,4EA685,FFFFFF,Station de la Concorde
 39,0,1,39,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/39,4EA685,FFFFFF,Charny / Saint-Jean-Chrysostome
 42E,0,0,42E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/42E,FFA400,FFFFFF,Cégep Garneau
-42E,0,1,42E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/42E,FFA400,FFFFFF,Lévis centre / Station Galeries Chagnon
 43E,0,0,43E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/43E,FFA400,FFFFFF,Cégep Garneau
 43E,0,1,43E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/43E,FFA400,FFFFFF,PRB des Rivières / Station de la Concorde
 65,0,0,65,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/65,4EA685,FFFFFF,PRB des Rivières
 65,0,1,65,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/65,4EA685,FFFFFF,Saint-Lambert-de-Lauzon
-ECQ,0,0,ECQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ECQ,FFA400,FFFFFF,Colline Parlementaire
-ELQ,0,0,ELQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ELQ,FFA400,FFFFFF,Colline Parlementaire
-ELQ,0,1,ELQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ELQ,FFA400,FFFFFF,Lévis centre / Lauzon
-EOQ,0,0,EOQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/EOQ,FFA400,FFFFFF,Colline Parlementaire
-EOQ,0,1,EOQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/EOQ,FFA400,FFFFFF,PRB des Rivières / Saint-Étienne-de-Lauzon
-ESQ,0,0,ESQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ESQ,FFA400,FFFFFF,Colline Parlementaire
 L1,0,0,L1,Lévisien 1,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L1,4EA685,FFFFFF,Parc industriel de Lauzon / Station de la Concorde
 L1,0,1,L1,Lévisien 1,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L1,4EA685,FFFFFF,Terminus Lagueux
 L2,0,0,L2,Lévisien 2,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L2,1E4289,FFFFFF,Sainte-Foy centre
 L2,0,1,L2,Lévisien 2,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L2,1E4289,FFFFFF,Terminus de la Traverse / Station Galeries Chagnon
 L3,0,0,L3,Lévisien 3,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L3,1E4289,FFFFFF,Sainte-Foy centre / Station de la Concorde
 L3,0,1,L3,Lévisien 3,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L3,1E4289,FFFFFF,Terminus Lagueux
+L4,0,0,L4,Lévisien 4,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L4,4EA685,FFFFFF,Sainte-Foy centre
+L4,0,1,L4,Lévisien 4,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L4,4EA685,FFFFFF,Lauzon
 T1,0,0,T1,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T1,A47400,FFFFFF,Chemin des Îles / Rue Gravel (PM)
 T1,0,1,T1,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T1,A47400,FFFFFF,Chemin des Îles / Rue Gravel (AM)
 T15,0,0,T15,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T15,A47400,FFFFFF,Station Galeries Chagnon
@@ -122,8 +119,6 @@ T2,0,1,T2,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T2,A47
 T22,0,0,T22,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T22,A47400,FFFFFF,PRB des Rivières / Parc industriel de Bernières-Nord
 T22,0,1,T22,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T22,A47400,FFFFFF,Saint-Nicolas - Bernières / PRB des Rivières
 T31,0,1,T31,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T31,A47400,FFFFFF,Breakeyville / Station de la Concorde
-T33,0,0,T33,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T33,A47400,FFFFFF,Sainte-Hélène-de-Breakeyville
-T33,0,1,T33,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T33,A47400,FFFFFF,Vieux Chemin
 T34,0,0,T34,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T34,A47400,FFFFFF,Station de la Concorde
 T34,0,1,T34,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T34,A47400,FFFFFF,Saint-Romuald
 T65,0,0,T65,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T65,A47400,FFFFFF,PRB Saint-Lambert-de-Lauzon

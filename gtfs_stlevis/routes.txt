@@ -13,6 +13,7 @@
 135,0,135,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/135,7E4082,FFFFFF
 136,0,136,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/136,7E4082,FFFFFF
 137,0,137,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/137,7E4082,FFFFFF
+138,0,138,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/138,7E4082,FFFFFF
 139,0,139,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/139,7E4082,FFFFFF
 15,0,15,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/15,0091B3,FFFFFF
 155,0,155,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/155,7E4082,FFFFFF
@@ -22,6 +23,7 @@
 221,0,221,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/221,7E4082,FFFFFF
 222,0,222,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/222,7E4082,FFFFFF
 225,0,225,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/225,7E4082,FFFFFF
+229,0,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF
 23,0,23,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23,0091B3,FFFFFF
 231,0,231,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/231,7E4082,FFFFFF
 232,0,232,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/232,7E4082,FFFFFF
@@ -31,7 +33,6 @@
 241,0,241,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/241,7E4082,FFFFFF
 242,0,242,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/242,7E4082,FFFFFF
 245,0,245,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/245,7E4082,FFFFFF
-246,0,246,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/246,7E4082,FFFFFF
 24E,0,24E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/24E,FFA400,FFFFFF
 31,0,31,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/31,0091B3,FFFFFF
 311,0,311,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/311,7E4082,FFFFFF
@@ -56,15 +57,12 @@
 43E,0,43E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/43E,FFA400,FFFFFF
 65,0,65,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/65,4EA685,FFFFFF
 BSR,0,BSR,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/BSR,C00000,FFFFFF
-ECQ,0,ECQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ECQ,FFA400,FFFFFF
-ELQ,0,ELQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ELQ,FFA400,FFFFFF
-EOQ,0,EOQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/EOQ,FFA400,FFFFFF
-ESQ,0,ESQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/ESQ,FFA400,FFFFFF
 FEQ,0,FEQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/FEQ,C00000,FFFFFF
 HONC,0,HONC,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/HONC,C00000,FFFFFF
 L1,0,L1,Lévisien 1,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L1,4EA685,FFFFFF
 L2,0,L2,Lévisien 2,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L2,1E4289,FFFFFF
 L3,0,L3,Lévisien 3,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L3,1E4289,FFFFFF
+L4,0,L4,Lévisien 4,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/L4,4EA685,FFFFFF
 PAQ,0,PAQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/PAQ,C00000,FFFFFF
 RIVN,0,RIVN,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/RIVN,C00000,FFFFFF
 T1,0,T1,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T1,A47400,FFFFFF
@@ -72,7 +70,6 @@ T15,0,T15,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T15,A4
 T2,0,T2,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T2,A47400,FFFFFF
 T22,0,T22,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T22,A47400,FFFFFF
 T31,0,T31,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T31,A47400,FFFFFF
-T34,0,T34,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T34,A47400,FFFFFF
 T65,0,T65,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T65,A47400,FFFFFF
 T66,0,T66,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T66,A47400,FFFFFF
 UQAR,0,UQAR,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/UQAR,C00000,FFFFFF
