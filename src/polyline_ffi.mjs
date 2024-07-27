@@ -7,7 +7,7 @@ export function _new(points, color) {
 }
 
 export function add_to(line, map) {
-  line.addTo(map);
+  return line.addTo(map);
 }
 
 export function remove(line) {

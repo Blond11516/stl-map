@@ -11,6 +11,7 @@ import plinth/browser/element.{type Element}
 import plinth/browser/event.{type Event}
 import stl_map/frontend/frontend
 import stl_map/frontend/globals
+import stl_map/frontend/leaflet/circle
 import stl_map/frontend/leaflet/lat_lng
 import stl_map/frontend/leaflet/map
 import stl_map/frontend/leaflet/polyline
@@ -84,26 +85,43 @@ pub fn add_line(route_id: String) -> Promise(Nil) {
       let route_polyline = polyline.new(array.from_list(points), route.color)
       polyline.add_to(route_polyline, map)
 
-      globals.get_polylines()
-      |> dict.insert(route_id, route_polyline)
-      |> globals.set_polylines()
+      let assert Ok(line_start) = list.first(points)
+      let start_circle =
+        circle.new(line_start, circle.Options(route.color, 100, "white", 1.0))
+        |> circle.add_to(map)
+
+      let assert Ok(line_end) = list.last(points)
+      let end_circle =
+        circle.new(line_end, circle.Options(route.color, 100, route.color, 1.0))
+        |> circle.add_to(map)
+
+      globals.get_selected_routes()
+      |> dict.insert(
+        route_id,
+        globals.SelectedRoute(route_polyline, start_circle, end_circle),
+      )
+      |> globals.set_selected_routes()
     }
     Error(_) -> Nil
   }
 }
 
 pub fn remove_line(route_id: String) -> Nil {
-  let polylines = globals.get_polylines()
-  case dict.has_key(polylines, route_id) {
+  let selected_routes = globals.get_selected_routes()
+  case dict.has_key(selected_routes, route_id) {
     True -> {
-      let assert Ok(polyline) =
-        globals.get_polylines()
+      let assert Ok(selected_route) =
+        globals.get_selected_routes()
         |> dict.get(route_id)
 
-      polyline.remove(polyline)
+      polyline.remove(selected_route.polyline)
 
-      globals.get_polylines()
+      circle.remove(selected_route.start_circle)
+      circle.remove(selected_route.end_circle)
+
+      globals.get_selected_routes()
       |> dict.delete(route_id)
+      |> globals.set_selected_routes()
 
       Nil
     }

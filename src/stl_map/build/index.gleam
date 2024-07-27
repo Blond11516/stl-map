@@ -51,7 +51,7 @@ fn body(routes: List(Route)) {
 
   html.body([], [
     html.form([attribute.id("routes-form")], [
-      html.div([], [
+      html.div([attribute.style([#("width", "250px"), #("flex-shrink", "0")])], [
         html.label([], [
           html.input([
             attribute.type_("range"),
@@ -64,29 +64,76 @@ fn body(routes: List(Route)) {
               |> int.to_string(),
             ),
           ]),
-          html.text("Départ après: "),
-          html.span([attribute.id("startTimePreview")], []),
-        ]),
-        html.fieldset([], [
-          html.legend([], [html.text("Direction:")]),
-          html.label([], [
-            html.input([
-              attribute.type_("radio"),
-              attribute.name("direction"),
-              attribute.value("0"),
-              attribute.checked(True),
-            ]),
-            html.text("0"),
-          ]),
-          html.label([], [
-            html.input([
-              attribute.type_("radio"),
-              attribute.name("direction"),
-              attribute.value("1"),
-            ]),
-            html.text("1"),
+          html.div([], [
+            html.text("Départ après: "),
+            html.span([attribute.id("startTimePreview")], []),
           ]),
         ]),
+        html.div(
+          [
+            attribute.style([
+              #("display", "flex"),
+              #("flex-direction", "row"),
+              #("gap", "4px"),
+            ]),
+          ],
+          [
+            html.fieldset([], [
+              html.legend([], [html.text("Direction:")]),
+              html.label([], [
+                html.input([
+                  attribute.type_("radio"),
+                  attribute.name("direction"),
+                  attribute.value("0"),
+                  attribute.checked(True),
+                ]),
+                html.text("0"),
+              ]),
+              html.label([], [
+                html.input([
+                  attribute.type_("radio"),
+                  attribute.name("direction"),
+                  attribute.value("1"),
+                ]),
+                html.text("1"),
+              ]),
+            ]),
+            html.div([attribute.style([#("padding-top", "15px")])], [
+              html.div(
+                [
+                  attribute.style([
+                    #("display", "flex"),
+                    #("flex-direction", "row"),
+                    #("align-items", "center"),
+                  ]),
+                ],
+                [
+                  html.img([
+                    attribute.src("images/start_circle.svg"),
+                    attribute.class("legend-image"),
+                  ]),
+                  html.text("Début de la route"),
+                ],
+              ),
+              html.div(
+                [
+                  attribute.style([
+                    #("display", "flex"),
+                    #("flex-direction", "row"),
+                    #("align-items", "center"),
+                  ]),
+                ],
+                [
+                  html.img([
+                    attribute.src("images/end_circle.svg"),
+                    attribute.class("legend-image"),
+                  ]),
+                  html.text("Fin de la route"),
+                ],
+              ),
+            ]),
+          ],
+        ),
       ]),
       html.div(
         [],

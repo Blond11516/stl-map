@@ -1,6 +1,6 @@
 const globals = {
   map: undefined,
-  polylines: undefined,
+  selectedRoutes: undefined,
   startTimePreview: undefined,
   startTime: undefined,
   direction: undefined,

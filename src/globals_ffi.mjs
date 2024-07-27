@@ -16,12 +16,12 @@ export function set_start_time(value) {
   globals.startTime = value;
 }
 
-export function get_polylines() {
-  return globals.polylines;
+export function get_selected_routes() {
+  return globals.selectedRoutes;
 }
 
-export function set_polylines(polylines) {
-  globals.polylines = polylines;
+export function set_selected_routes(selectedRoutes) {
+  globals.selectedRoutes = selectedRoutes;
 }
 
 export function get_direction() {

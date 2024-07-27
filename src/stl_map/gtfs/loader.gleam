@@ -123,8 +123,9 @@ pub fn load_stop_times() -> List(StopTimeRecord) {
 }
 
 fn read_file(filename: String) -> List(String) {
-  let assert Ok(routes) = simplifile.read(from: "./gtfs_stlevis/" <> filename)
-  routes
+  let assert Ok(content) = simplifile.read(from: "./gtfs_stlevis/" <> filename)
+
+  content
   |> string.trim()
   |> string.split("\r\n")
 }

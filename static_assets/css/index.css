@@ -19,3 +19,9 @@ body {
 
 	margin: 4px;
 }
+
+.legend-image {
+	width: 15px;
+	height: 15px;
+	margin-right: 4px;
+}
