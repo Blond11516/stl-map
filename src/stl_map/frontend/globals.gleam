@@ -5,7 +5,11 @@ import stl_map/frontend/leaflet/map.{type Map}
 import stl_map/frontend/leaflet/polyline.{type Polyline}
 
 pub type SelectedRoute {
-  SelectedRoute(polyline: Polyline, start_circle: Circle, end_circle: Circle)
+  SelectedRoute(
+    polyline: Polyline,
+    start_circle: Circle,
+    stop_circles: List(Circle),
+  )
 }
 
 type SelectedRoutesDict =

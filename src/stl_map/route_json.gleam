@@ -18,7 +18,12 @@ pub type TripJson {
 }
 
 pub type StopJson {
-  StopJson(id: String, arrival_time: TimeOfDay, departure_time: TimeOfDay)
+  StopJson(
+    id: String,
+    arrival_time: TimeOfDay,
+    departure_time: TimeOfDay,
+    point: PointJson,
+  )
 }
 
 pub type PointJson =
@@ -31,7 +36,10 @@ pub fn from_route(route: Route) -> RouteJson {
       TripJson(
         list.map(trip.shape.points, fn(point) { [point.lat, point.lon] }),
         list.map(trip.stops, fn(stop) {
-          StopJson(stop.id, stop.arrival_time, stop.departure_time)
+          StopJson(stop.id, stop.arrival_time, stop.departure_time, [
+            stop.lat,
+            stop.lon,
+          ])
         }),
         trip.start_time,
         direction.to_int(trip.direction),
@@ -70,6 +78,7 @@ pub fn serialize(route: RouteJson) -> String {
                   "departure_time",
                   json.string(time_of_day.present(stop.departure_time)),
                 ),
+                #("point", json.array(stop.point, of: json.float)),
               ])
             }),
           ),

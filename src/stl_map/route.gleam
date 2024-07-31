@@ -25,5 +25,11 @@ pub type ShapePoint {
 }
 
 pub type Stop {
-  Stop(id: String, arrival_time: TimeOfDay, departure_time: TimeOfDay)
+  Stop(
+    id: String,
+    arrival_time: TimeOfDay,
+    departure_time: TimeOfDay,
+    lat: Float,
+    lon: Float,
+  )
 }

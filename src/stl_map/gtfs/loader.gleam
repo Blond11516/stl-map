@@ -38,6 +38,10 @@ pub type StopTimeRecord {
   )
 }
 
+pub type StopRecord {
+  StopRecord(stop_id: String, stop_lat: Float, stop_lon: Float)
+}
+
 pub fn load_shapes() -> List(ShapeRecord) {
   read_file("shapes.txt")
   |> list.drop(1)
@@ -119,6 +123,29 @@ pub fn load_stop_times() -> List(StopTimeRecord) {
       stop_id,
       parsed_stop_sequence,
     )
+  })
+}
+
+pub fn load_stops() -> List(StopRecord) {
+  read_file("stops.txt")
+  |> list.drop(1)
+  |> list.map(fn(stop) {
+    let assert [
+      stop_id,
+      _stop_code,
+      _stop_name,
+      _stop_desc,
+      stop_lat,
+      stop_lon,
+      _zone_id,
+      _stop_url,
+      _location_type,
+      _parent_station,
+      _wheelchair_boarding,
+    ] = string.split(stop, ",")
+    let assert Ok(lat) = float.parse(stop_lat)
+    let assert Ok(lon) = float.parse(stop_lon)
+    StopRecord(stop_id: stop_id, stop_lat: lat, stop_lon: lon)
   })
 }
 

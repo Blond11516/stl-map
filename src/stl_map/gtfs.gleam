@@ -4,7 +4,8 @@ import gleam/io
 import gleam/list
 import stl_map/direction
 import stl_map/gtfs/loader.{
-  type RouteRecord, type ShapeRecord, type StopTimeRecord, type TripRecord,
+  type RouteRecord, type ShapeRecord, type StopRecord, type StopTimeRecord,
+  type TripRecord,
 }
 import stl_map/route.{type Route, Route, Shape, ShapePoint, Stop, Trip}
 
@@ -17,6 +18,8 @@ pub fn load_routes() -> List(Route) {
   io.println("Loaded shape records")
   let stop_time_records = loader.load_stop_times()
   io.println("Loaded stop time records")
+  let stop_records = loader.load_stops()
+  io.println("Loaded stop records")
 
   io.println("Assembling routes")
   let routes =
@@ -25,6 +28,7 @@ pub fn load_routes() -> List(Route) {
       trip_records,
       shape_records,
       stop_time_records,
+      stop_records,
     )
   io.println("Finished assembling routes")
 
@@ -36,6 +40,7 @@ fn assemble_from_records(
   trip_records: List(TripRecord),
   shape_records: List(ShapeRecord),
   stop_time_records: List(StopTimeRecord),
+  stop_records: List(StopRecord),
 ) -> List(Route) {
   let trip_records_by_route_id =
     list.group(trip_records, fn(trip_record) { trip_record.route_id })
@@ -47,6 +52,11 @@ fn assemble_from_records(
     list.group(stop_time_records, fn(stop_time_record) {
       stop_time_record.trip_id
     })
+
+  let stops_by_stop_id =
+    stop_records
+    |> list.map(fn(stop_record) { #(stop_record.stop_id, stop_record) })
+    |> dict.from_list()
 
   list.map(route_records, fn(route_record) {
     io.println("Processing route " <> route_record.route_id)
@@ -78,14 +88,19 @@ fn assemble_from_records(
             int.compare(left.stop_sequence, right.stop_sequence)
           })
           |> list.map(fn(stop_time_record) {
+            let assert Ok(stop) =
+              dict.get(stops_by_stop_id, stop_time_record.stop_id)
+
             Stop(
               stop_time_record.stop_id,
               stop_time_record.arrival_time,
               stop_time_record.departure_time,
+              stop.stop_lat,
+              stop.stop_lon,
             )
           })
 
-        let assert Ok(Stop(_, start_time, _)) = list.first(stops)
+        let assert Ok(Stop(_, start_time, _, _, _)) = list.first(stops)
 
         let direction = direction.from_int(trip_record.direction_id)
 

@@ -10,7 +10,12 @@ export function fetch_route(route_id) {
         trips: to_list(
           res.trips.map((trip) => ({
             points: to_list(trip.points.map((point) => to_list(point))),
-            stops: to_list(trip.stops),
+            stops: to_list(
+              trip.stops.map((stop) => ({
+                ...stop,
+                point: to_list(stop.point),
+              }))
+            ),
             start_time: parse_time_of_day(trip.start_time),
             direction: trip.direction,
           }))

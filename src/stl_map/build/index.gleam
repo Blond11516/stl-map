@@ -128,7 +128,7 @@ fn body(routes: List(Route)) {
                     attribute.src("images/end_circle.svg"),
                     attribute.class("legend-image"),
                   ]),
-                  html.text("Fin de la route"),
+                  html.text("Arrêt"),
                 ],
               ),
             ]),
