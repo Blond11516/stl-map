@@ -1,4 +1,4 @@
-import { Circle } from "./leaflet-src.esm";
+import { Circle } from "./leaflet-src.esm.js";
 
 export function _new(position, options) {
   return new Circle(position, {

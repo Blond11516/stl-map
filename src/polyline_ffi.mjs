@@ -1,4 +1,4 @@
-import { Polyline } from "./leaflet-src.esm";
+import { Polyline } from "./leaflet-src.esm.js";
 
 export function _new(points, color) {
   return new Polyline(points, {

@@ -1,4 +1,4 @@
-import { Map } from "./leaflet-src.esm";
+import { Map } from "./leaflet-src.esm.js";
 
 export function _new(container_id) {
   return new Map(container_id);
