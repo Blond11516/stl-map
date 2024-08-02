@@ -35,9 +35,9 @@ jobs:
           version-file: .tool-versions
           version-type: strict
 
-      - uses: extractions/setup-just@v1
+      - uses: extractions/setup-just@v2
         with:
-          just-version: 1.26.0
+          just-version: 1.33.0
 
       - run: gleam deps download
 
