@@ -19,32 +19,58 @@ pub fn init() -> Nil {
   set_selected_routes(dict.new())
 }
 
-@external(javascript, "../../globals_ffi.mjs", "get_start_time_preview")
-pub fn get_start_time_preview() -> Element
+const start_time_preview_key = "start_time_preview"
 
-@external(javascript, "../../globals_ffi.mjs", "set_start_time_preview")
-pub fn set_start_time_preview(preview: Element) -> Nil
+pub fn get_start_time_preview() -> Element {
+  get(start_time_preview_key)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "get_start_time")
-pub fn get_start_time() -> Int
+pub fn set_start_time_preview(preview: Element) -> Nil {
+  set(start_time_preview_key, preview)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "set_start_time")
-pub fn set_start_time(value: Int) -> Nil
+const start_time_key = "start_time"
 
-@external(javascript, "../../globals_ffi.mjs", "get_selected_routes")
-pub fn get_selected_routes() -> SelectedRoutesDict
+pub fn get_start_time() -> Int {
+  get(start_time_key)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "set_selected_routes")
-pub fn set_selected_routes(selected_routes: SelectedRoutesDict) -> Nil
+pub fn set_start_time(value: Int) -> Nil {
+  set(start_time_key, value)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "get_direction")
-pub fn get_direction() -> Int
+const selected_routes_key = "selected_routes"
 
-@external(javascript, "../../globals_ffi.mjs", "set_direction")
-pub fn set_direction(direction: Int) -> Nil
+pub fn get_selected_routes() -> SelectedRoutesDict {
+  get(selected_routes_key)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "get_map")
-pub fn get_map() -> Map
+pub fn set_selected_routes(selected_routes: SelectedRoutesDict) -> Nil {
+  set(selected_routes_key, selected_routes)
+}
 
-@external(javascript, "../../globals_ffi.mjs", "set_map")
-pub fn set_map(map: Map) -> Nil
+const direction_key = "direction"
+
+pub fn get_direction() -> Int {
+  get(direction_key)
+}
+
+pub fn set_direction(direction: Int) -> Nil {
+  set(direction_key, direction)
+}
+
+const map_key = "map"
+
+pub fn get_map() -> Map {
+  get(map_key)
+}
+
+pub fn set_map(map: Map) -> Nil {
+  set(map_key, map)
+}
+
+@external(javascript, "../../globals_ffi.mjs", "set")
+fn set(key: String, value: a) -> Nil
+
+@external(javascript, "../../globals_ffi.mjs", "get")
+fn get(key: String) -> a

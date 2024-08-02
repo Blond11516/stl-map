@@ -1,41 +1,9 @@
-import globals from "./globals.mjs";
+const globals = {};
 
-export function get_start_time_preview() {
-  return globals.startTimePreview;
+export function set(key, value) {
+  globals[key] = value;
 }
 
-export function set_start_time_preview(preview) {
-  globals.startTimePreview = preview;
-}
-
-export function get_start_time() {
-  return globals.startTime;
-}
-
-export function set_start_time(value) {
-  globals.startTime = value;
-}
-
-export function get_selected_routes() {
-  return globals.selectedRoutes;
-}
-
-export function set_selected_routes(selectedRoutes) {
-  globals.selectedRoutes = selectedRoutes;
-}
-
-export function get_direction() {
-  return globals.direction;
-}
-
-export function set_direction(direction) {
-  globals.direction = direction;
-}
-
-export function get_map() {
-  return globals.map;
-}
-
-export function set_map(map) {
-  globals.map = map;
+export function get(key) {
+  return globals[key];
 }
