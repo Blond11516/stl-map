@@ -12,7 +12,7 @@ pub fn parse_time_of_day(raw: String) -> TimeOfDay {
   let assert Ok(minute) = int.parse(raw_minute)
   let assert Ok(second) = int.parse(raw_second)
 
-  TimeOfDay(hour, minute, second)
+  TimeOfDay(hour:, minute:, second:)
 }
 
 pub fn present(time_of_day: TimeOfDay) -> String {

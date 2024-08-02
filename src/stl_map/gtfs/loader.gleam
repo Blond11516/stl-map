@@ -56,7 +56,12 @@ pub fn load_shapes() -> List(ShapeRecord) {
     let assert Ok(lat) = float.parse(shape_pt_lat)
     let assert Ok(lon) = float.parse(shape_pt_lon)
     let assert Ok(sequence) = int.parse(shape_pt_sequence)
-    ShapeRecord(shape_id, lat, lon, sequence)
+    ShapeRecord(
+      shape_id: shape_id,
+      shape_pt_lat: lat,
+      shape_pt_lon: lon,
+      shape_pt_sequence: sequence,
+    )
   })
 }
 
@@ -76,7 +81,13 @@ pub fn load_trips() -> List(TripRecord) {
       _wheelchair_accessible,
     ] = string.split(trip, ",")
     let assert Ok(direction) = int.parse(direction_id)
-    TripRecord(trip_id, route_id, trip_headsign, shape_id, direction)
+    TripRecord(
+      trip_id:,
+      route_id:,
+      trip_headsign:,
+      shape_id:,
+      direction_id: direction,
+    )
   })
 }
 
@@ -95,7 +106,7 @@ pub fn load_routes() -> List(RouteRecord) {
       route_color,
       _route_text_color,
     ] = string.split(route, ",")
-    RouteRecord(route_id, route_short_name, "#" <> route_color)
+    RouteRecord(route_id:, route_short_name:, route_color: "#" <> route_color)
   })
 }
 
@@ -117,11 +128,11 @@ pub fn load_stop_times() -> List(StopTimeRecord) {
     ] = string.split(stop_time, ",")
     let assert Ok(parsed_stop_sequence) = int.parse(stop_sequence)
     StopTimeRecord(
-      trip_id,
-      time_of_day.parse_time_of_day(arrival_time),
-      time_of_day.parse_time_of_day(departure_time),
-      stop_id,
-      parsed_stop_sequence,
+      trip_id:,
+      arrival_time: time_of_day.parse_time_of_day(arrival_time),
+      departure_time: time_of_day.parse_time_of_day(departure_time),
+      stop_id:,
+      stop_sequence: parsed_stop_sequence,
     )
   })
 }
@@ -145,7 +156,7 @@ pub fn load_stops() -> List(StopRecord) {
     ] = string.split(stop, ",")
     let assert Ok(lat) = float.parse(stop_lat)
     let assert Ok(lon) = float.parse(stop_lon)
-    StopRecord(stop_id: stop_id, stop_lat: lat, stop_lon: lon)
+    StopRecord(stop_id:, stop_lat: lat, stop_lon: lon)
   })
 }
 

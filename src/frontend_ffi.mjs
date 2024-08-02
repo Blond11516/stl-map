@@ -1,5 +1,6 @@
 import { to_list } from "../gleam_javascript/gleam/javascript/array.mjs";
 import { parse_time_of_day } from "./stl_map/time_of_day.mjs";
+import { Ok, Error } from "../prelude.mjs";
 
 export function fetch_route(route_id) {
   return fetch(`./routes/${route_id.toUpperCase()}.json`)
@@ -23,4 +24,12 @@ export function fetch_route(route_id) {
         color: res.color,
       };
     });
+}
+
+export function assert_is_element(dyn) {
+  if (dyn instanceof Element) {
+    return new Ok(dyn);
+  } else {
+    return new Error(null);
+  }
 }

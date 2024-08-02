@@ -31,21 +31,23 @@ pub type PointJson =
 
 pub fn from_route(route: Route) -> RouteJson {
   RouteJson(
-    route.name,
-    list.map(route.trips, fn(trip) {
+    name: route.name,
+    trips: list.map(route.trips, fn(trip) {
       TripJson(
-        list.map(trip.shape.points, fn(point) { [point.lat, point.lon] }),
-        list.map(trip.stops, fn(stop) {
-          StopJson(stop.id, stop.arrival_time, stop.departure_time, [
-            stop.lat,
-            stop.lon,
-          ])
+        points: list.map(trip.shape.points, fn(point) { [point.lat, point.lon] }),
+        stops: list.map(trip.stops, fn(stop) {
+          StopJson(
+            id: stop.id,
+            arrival_time: stop.arrival_time,
+            departure_time: stop.departure_time,
+            point: [stop.lat, stop.lon],
+          )
         }),
-        trip.start_time,
-        direction.to_int(trip.direction),
+        start_time: trip.start_time,
+        direction: direction.to_int(trip.direction),
       )
     }),
-    route.color,
+    color: route.color,
   )
 }
 

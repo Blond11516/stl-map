@@ -76,7 +76,10 @@ fn assemble_from_records(
             int.compare(left.shape_pt_sequence, right.shape_pt_sequence)
           })
           |> list.map(fn(shape_record) {
-            ShapePoint(shape_record.shape_pt_lat, shape_record.shape_pt_lon)
+            ShapePoint(
+              lat: shape_record.shape_pt_lat,
+              lon: shape_record.shape_pt_lon,
+            )
           })
 
         let assert Ok(current_trip_stop_time_records) =
@@ -92,33 +95,33 @@ fn assemble_from_records(
               dict.get(stops_by_stop_id, stop_time_record.stop_id)
 
             Stop(
-              stop_time_record.stop_id,
-              stop_time_record.arrival_time,
-              stop_time_record.departure_time,
-              stop.stop_lat,
-              stop.stop_lon,
+              id: stop_time_record.stop_id,
+              arrival_time: stop_time_record.arrival_time,
+              departure_time: stop_time_record.departure_time,
+              lat: stop.stop_lat,
+              lon: stop.stop_lon,
             )
           })
 
-        let assert Ok(Stop(_, start_time, _, _, _)) = list.first(stops)
+        let assert Ok(Stop(arrival_time: start_time, ..)) = list.first(stops)
 
         let direction = direction.from_int(trip_record.direction_id)
 
         Trip(
-          trip_record.trip_id,
-          trip_record.trip_headsign,
-          Shape(trip_record.shape_id, shape_points),
-          stops,
-          start_time,
-          direction,
+          id: trip_record.trip_id,
+          headsign: trip_record.trip_headsign,
+          shape: Shape(id: trip_record.shape_id, points: shape_points),
+          stops: stops,
+          start_time: start_time,
+          direction:,
         )
       })
 
     Route(
-      route_record.route_id,
-      route_record.route_short_name,
-      trips,
-      route_record.route_color,
+      id: route_record.route_id,
+      name: route_record.route_short_name,
+      trips:,
+      color: route_record.route_color,
     )
   })
 }

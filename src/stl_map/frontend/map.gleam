@@ -30,7 +30,11 @@ pub fn draw_route(trip: TripJson, route_color: String, route_id: String) -> Nil 
   globals.get_selected_routes()
   |> dict.insert(
     route_id,
-    globals.SelectedRoute(route_polyline, start_circle, stop_circles),
+    globals.SelectedRoute(
+      polyline: route_polyline,
+      start_circle:,
+      stop_circles:,
+    ),
   )
   |> globals.set_selected_routes()
 }

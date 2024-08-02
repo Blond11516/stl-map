@@ -1,13 +1,15 @@
+import gleam/dynamic.{type Dynamic}
 import gleam/int
 import gleam/javascript/promise.{type Promise}
+import plinth/browser/element.{type Element}
 import stl_map/route_json.{type RouteJson}
 import stl_map/time_of_day.{type TimeOfDay, TimeOfDay}
 
 pub fn time_from_minutes(total_minutes: Int) -> TimeOfDay {
-  let hours = total_minutes / 60
-  let assert Ok(minutes) = int.modulo(total_minutes, 60)
+  let hour = total_minutes / 60
+  let assert Ok(minute) = int.modulo(total_minutes, 60)
 
-  TimeOfDay(hours, minutes, 0)
+  TimeOfDay(hour:, minute:, second: 0)
 }
 
 pub fn get_route_data(route_id: String) -> Promise(RouteJson) {
@@ -22,3 +24,6 @@ pub fn format_start_time(total_minutes: Int) -> String {
 
 @external(javascript, "../../frontend_ffi.mjs", "fetch_route")
 fn fetch_route(route_id: String) -> Promise(RouteJson)
+
+@external(javascript, "../../frontend_ffi.mjs", "assert_is_element")
+pub fn assert_is_element(dyn: Dynamic) -> Result(Element, Nil)

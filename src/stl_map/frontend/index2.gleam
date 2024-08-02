@@ -1,5 +1,5 @@
 import gleam/dict
-import gleam/dynamic
+import gleam/dynamic.{type Dynamic}
 import gleam/int
 import gleam/javascript/array.{type Array}
 import gleam/javascript/promise.{type Promise}
@@ -27,7 +27,7 @@ pub fn change_start_time(e: Event) -> Nil {
   let assert Ok(start_time) =
     e
     |> event.target()
-    |> dynamic.unsafe_coerce()
+    |> assert_is_element()
     |> element.value()
     |> result.then(int.parse)
 
@@ -88,7 +88,7 @@ pub fn remove_line(route_id: String) -> Nil {
 }
 
 pub fn change_selected_routes(e: Event) -> Nil {
-  let checkbox = e |> event.target() |> dynamic.unsafe_coerce()
+  let checkbox = e |> event.target() |> assert_is_element()
   let checked = element.get_checked(checkbox)
   let assert Ok(name) = element.get_attribute(checkbox, "name")
   case checked {
@@ -104,7 +104,7 @@ pub fn change_direction(e: Event) -> Nil {
   let assert Ok(direction) =
     e
     |> event.target()
-    |> dynamic.unsafe_coerce()
+    |> assert_is_element()
     |> element.get_attribute("value")
     |> result.then(int.parse)
   globals.set_direction(direction)
@@ -130,12 +130,19 @@ pub fn change_routes(e: Event) -> Nil {
   let assert Ok(name) =
     e
     |> event.target()
-    |> dynamic.unsafe_coerce()
+    |> assert_is_element()
     |> element.get_attribute("name")
   case name {
     "startAfter" -> change_start_time(e)
     "direction" -> change_direction(e)
     _ -> change_selected_routes(e)
+  }
+}
+
+fn assert_is_element(dyn: Dynamic) -> Element {
+  case frontend.assert_is_element(dyn) {
+    Ok(el) -> el
+    Error(_) -> panic
   }
 }
 
