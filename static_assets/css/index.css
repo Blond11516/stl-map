@@ -25,3 +25,16 @@ body {
 	height: 15px;
 	margin-right: 4px;
 }
+
+footer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	padding-inline: 4px;
+
+	font-size: 0.8rem;
+
+	span:nth-child(2n) {
+		justify-self: end;
+	}
+}

@@ -5,7 +5,9 @@ import gleam/string
 import lustre/attribute
 import lustre/element/html.{html}
 import lustre/ssg
+import stl_map/date
 import stl_map/gtfs
+import stl_map/gtfs/loader.{type FeedInfoRecord}
 import stl_map/route.{type Route}
 import stl_map/time_of_day
 
@@ -15,8 +17,9 @@ pub fn main() -> Nil {
 
 pub fn build(routes: Option(List(Route))) -> Nil {
   let routes = option.lazy_unwrap(routes, gtfs.load_routes)
+  let feed_info = loader.load_feed_info()
 
-  let index_html = html([], [head(), body(routes)])
+  let index_html = html([], [head(), body(routes, feed_info)])
 
   let _ =
     ssg.new("./dist/index")
@@ -40,7 +43,7 @@ fn head() {
   ])
 }
 
-fn body(routes: List(Route)) {
+fn body(routes: List(Route), feed_info: FeedInfoRecord) {
   let assert Ok(last_departure_time) =
     routes
     |> list.flat_map(fn(route) { route.trips })
@@ -148,5 +151,33 @@ fn body(routes: List(Route)) {
       ),
     ]),
     html.div([attribute.id("map")], []),
+    html.footer([], [
+      html.span([], [
+        html.text("Cette application est "),
+        html.a([attribute.href("https://github.com/Blond11516/stl-map")], [
+          html.text("open source"),
+        ]),
+        html.text("."),
+      ]),
+      html.span([], [
+        html.text("Il y a une erreur dans la carte? "),
+        html.a([attribute.href("https://www.openstreetmap.org/fixthemap")], [
+          html.text("Corrigez là!"),
+        ]),
+      ]),
+      html.span([], [
+        html.text(
+          "Dernière mise à jour des données de parcours: "
+          <> date.present(feed_info.feed_version),
+        ),
+      ]),
+      html.span([], [
+        html.text("Les données des parcours sont offertes par la "),
+        html.a([attribute.href("https://www.stlevis.ca/")], [
+          html.text("Société de Transport de Lévis"),
+        ]),
+        html.text("."),
+      ]),
+    ]),
   ])
 }

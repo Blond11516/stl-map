@@ -6,7 +6,7 @@ pub type TimeOfDay {
   TimeOfDay(hour: Int, minute: Int, second: Int)
 }
 
-pub fn parse_time_of_day(raw: String) -> TimeOfDay {
+pub fn parse(raw: String) -> TimeOfDay {
   let assert [raw_hour, raw_minute, raw_second] = string.split(raw, ":")
   let assert Ok(hour) = int.parse(raw_hour)
   let assert Ok(minute) = int.parse(raw_minute)

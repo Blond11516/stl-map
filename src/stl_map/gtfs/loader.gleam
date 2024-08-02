@@ -3,6 +3,7 @@ import gleam/int
 import gleam/list
 import gleam/string
 import simplifile
+import stl_map/date.{type Date}
 import stl_map/time_of_day.{type TimeOfDay}
 
 pub type RouteRecord {
@@ -40,6 +41,10 @@ pub type StopTimeRecord {
 
 pub type StopRecord {
   StopRecord(stop_id: String, stop_lat: Float, stop_lon: Float)
+}
+
+pub type FeedInfoRecord {
+  FeedInfoRecord(feed_version: Date)
 }
 
 pub fn load_shapes() -> List(ShapeRecord) {
@@ -129,8 +134,8 @@ pub fn load_stop_times() -> List(StopTimeRecord) {
     let assert Ok(parsed_stop_sequence) = int.parse(stop_sequence)
     StopTimeRecord(
       trip_id:,
-      arrival_time: time_of_day.parse_time_of_day(arrival_time),
-      departure_time: time_of_day.parse_time_of_day(departure_time),
+      arrival_time: time_of_day.parse(arrival_time),
+      departure_time: time_of_day.parse(departure_time),
       stop_id:,
       stop_sequence: parsed_stop_sequence,
     )
@@ -158,6 +163,23 @@ pub fn load_stops() -> List(StopRecord) {
     let assert Ok(lon) = float.parse(stop_lon)
     StopRecord(stop_id:, stop_lat: lat, stop_lon: lon)
   })
+}
+
+pub fn load_feed_info() -> FeedInfoRecord {
+  let assert [_, feed_info] = read_file("feed_info.txt")
+  let assert [
+    _feed_publisher_name,
+    _feed_publisher_url,
+    _feed_lang,
+    _feed_start_date,
+    _feed_end_date,
+    feed_version,
+    _feed_contact_email,
+  ] = string.split(feed_info, ",")
+
+  let version = date.parse(feed_version)
+
+  FeedInfoRecord(feed_version: version)
 }
 
 fn read_file(filename: String) -> List(String) {
