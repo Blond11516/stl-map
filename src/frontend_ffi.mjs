@@ -1,5 +1,5 @@
 import { to_list } from "../gleam_javascript/gleam/javascript/array.mjs";
-import { parse_time_of_day } from "./stl_map/time_of_day.mjs";
+import * as time_of_day from "./stl_map/time_of_day.mjs";
 import { Ok, Error } from "../prelude.mjs";
 
 export function fetch_route(route_id) {
@@ -17,7 +17,7 @@ export function fetch_route(route_id) {
                 point: to_list(stop.point),
               }))
             ),
-            start_time: parse_time_of_day(trip.start_time),
+            start_time: time_of_day.parse(trip.start_time),
             direction: trip.direction,
           }))
         ),
