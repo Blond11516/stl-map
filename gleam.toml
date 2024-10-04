@@ -1,7 +1,7 @@
 name = "stl_map"
 target = "javascript"
 version = "1.0.0"
-gleam = ">= 0.32.0"
+gleam = ">= 1.4.0"
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
