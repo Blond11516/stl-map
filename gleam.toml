@@ -15,17 +15,17 @@ gleam = ">= 0.32.0"
 # https://gleam.run/writing-gleam/gleam-toml/.
 
 [dependencies]
-gleam_stdlib = "0.38.0"
-simplifile = "1.7.0"
-lustre = "4.3.1"
+gleam_stdlib = "0.40.0"
+simplifile = "2.2.0"
+lustre = "4.5.0"
 gleam_json = "1.0.1"
-gleam_javascript = "0.11.0"
+gleam_javascript = "0.13.0"
 conversation = "1.4.3"
-plinth = "0.4.9"
+plinth = "0.4.14"
 
 [dev-dependencies]
-lustre_ssg = "0.8.0"
-esgleam = "0.6.0"
+lustre_ssg = "0.8.3"
+esgleam = "0.7.0"
 glen = "2.2.0"
 
 [javascript]
