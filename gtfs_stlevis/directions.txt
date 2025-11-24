@@ -34,6 +34,10 @@
 156,0,1,156,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/156,7E4082,FFFFFF,Pintendre
 158,0,0,158,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/158,7E4082,FFFFFF,École Pointe-Lévy
 158,0,1,158,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/158,7E4082,FFFFFF,Pintendre
+200,0,0,200,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/200,FF7800,FFFFFF,Lévis centre
+200,0,1,200,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/200,FF7800,FFFFFF,Sainte-Foy centre / Station de la Concorde
+210,0,0,210,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/210,FF7800,FFFFFF,Lévis centre
+210,0,1,210,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/210,FF7800,FFFFFF,Saint-Nicolas
 22,0,0,22,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/22,0091B3,FFFFFF,Station de la Concorde
 22,0,1,22,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/22,0091B3,FFFFFF,Saint-Nicolas - Bernières
 221,0,0,221,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/221,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
@@ -42,7 +46,7 @@
 222,0,1,222,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/222,7E4082,FFFFFF,Presqu'Île / Saint-Nicolas
 225,0,0,225,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/225,7E4082,FFFFFF,UQAR / Lévis centre
 225,0,1,225,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/225,7E4082,FFFFFF,Saint-Nicolas - Bernières
-229,0,0,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF,ESLE / C. hosp. P.-Gilbert
+229,0,0,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF,ESLE
 229,0,1,229,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/229,7E4082,FFFFFF,Saint-Nicolas - Bernières
 23,0,0,23,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23,0091B3,FFFFFF,Station de la Concorde
 23,0,1,23,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/23,0091B3,FFFFFF,Saint-Nicolas - Village
@@ -89,6 +93,8 @@
 37E,0,0,37E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/37E,FFA400,FFFFFF,Sainte-Foy centre
 37E,0,1,37E,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/37E,FFA400,FFFFFF,Saint-Jean-Chrysostome via Taniata
 38,0,0,38,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/38,0091B3,FFFFFF,St-Jean-Chrysostome via Vanier / Station Taniata
+380,0,0,380,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/380,FF7800,FFFFFF,Lévis centre
+380,0,1,380,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/380,FF7800,FFFFFF,Saint-Jean-Chrysostome
 381,0,0,381,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/381,7E4082,FFFFFF,Saint-Romuald - Juvénat Notre-Dame
 381,0,1,381,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/381,7E4082,FFFFFF,Saint-Jean-Chrysostome / Breakeyville
 385,0,0,385,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/385,7E4082,FFFFFF,UQAR / Lévis centre
@@ -127,7 +133,7 @@ T66,0,0,T66,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T66,
 T66,0,1,T66,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/T66,A47400,FFFFFF,Saint-Lambert-de-Lauzon
 BSR,0,0,BSR,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/BSR,C00000,FFFFFF,Festivent
 BSR,0,1,BSR,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/BSR,C00000,FFFFFF,Aréna BSR
-FEQ,0,0,FEQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/FEQ,C00000,FFFFFF,Navette FEQ
+FEQ,0,1,FEQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/FEQ,C00000,FFFFFF,Navette FEQ
 HONC,0,0,HONC,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/HONC,C00000,FFFFFF,Festivent
 HONC,0,1,HONC,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/HONC,C00000,FFFFFF,Complexe 2 Glaces Honco
 PAQ,0,0,PAQ,,,3,https://www.stlevis.ca/horaires-parcours/liste-des-parcours/PAQ,C00000,FFFFFF,Quai Paquet

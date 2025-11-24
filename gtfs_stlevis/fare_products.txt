@@ -1,0 +1,32 @@
+fare_product_id,fare_product_name,rider_category_id,fare_media_id,amount,currency
+passage_simple_semaine,Passage Simple Semaine,12+,cash,3.75,CAD
+passage_simple_fds,Passage Simple Fin de Semaine / Étébus,12+,cash,2.00,CAD
+passage_simple_semaine_child,Passage Simple Semaine,child,cash,0.00,CAD
+passage_simple_fds_child,Passage Simple Fin de Semaine / Étébus,child,cash,0.00,CAD
+passage_simple_semaine,Passage Simple Semaine,12+,nomade_paiement,3.75,CAD
+passage_simple_fds,Passage Simple Fin de Semaine / Étébus,12+,nomade_paiement,2.00,CAD
+4_passages,Carte de 4 Passages,regular,OPUS,14.50,CAD
+8_passages,Carte de 8 Passages,regular,OPUS,28.00,CAD
+12_passages,Carte de 12 Passages,regular,OPUS,40.00,CAD
+4_passages,Carte de 4 Passages,regular,nomade_paiement,14.50,CAD
+8_passages,Carte de 8 Passages,regular,nomade_paiement,28.00,CAD
+12_passages,Carte de 12 Passages,regular,nomade_paiement,40.00,CAD
+4_passages,Carte de 4 Passages (Transport Adapté),adapte,poincons,14.50,CAD
+8_passages,Carte de 8 Passages (Transport Adapté),adapte,poincons,28.00,CAD
+12_passages,Carte de 12 Passages (Transport Adapté),adapte,poincons,40.00,CAD
+mensuel_regulier,Mensuel STLévis régulier,regular,OPUS,99.30,CAD
+mensuel_privilege,Mensuel STLévis privilège,privilege,OPUS,74.75,CAD
+mensuel_etudiant,Mensuel STLévis étudiant,etudiant,OPUS,74.75,CAD
+mensuel_aine,Mensuel STLévis ainé,aine,OPUS,74.75,CAD
+mensuel_adobus,Mensuel STLévis Adobus 2 mois pour le prix d'un (du 1er juillet au 31 août),adobus,OPUS,74.75,CAD
+metropolitain_regulier,Métropolitain,regular,OPUS,105.00,CAD
+metropolitain_privilege,Métropolitain,privilege,OPUS,79.00,CAD
+metropolitain_etudiant,Métropolitain,etudiant,OPUS,79.00,CAD
+metropolitain_aine,Métropolitain,aine,OPUS,79.00,CAD
+mensuel_regulier,Mensuel STLévis régulier,regular,nomade_paiement,99.30,CAD
+mensuel_privilege,Mensuel STLévis privilège,privilege,nomade_paiement,74.75,CAD
+mensuel_etudiant,Mensuel STLévis étudiant,etudiant,nomade_paiement,74.75,CAD
+mensuel_aine,Mensuel STLévis ainé,aine,nomade_paiement,74.75,CAD
+mensuel_adobus,Mensuel STLévis Adobus 2 mois pour le prix d'un (du 1er juillet au 31 août),adobus,nomade_paiement,37.38,CAD
+20_metropolitain,20 billets Métropolitain,regular,CPO,70.00,CAD
+gratuite,gratuite,regular,cash,0.00,CAD

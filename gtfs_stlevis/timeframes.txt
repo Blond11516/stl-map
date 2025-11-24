@@ -1,0 +1,7 @@
+timeframe_group_id,start_time,end_time,service_id
+regulier,03:00:00,24:00:00,101
+regulier_lendemain,00:00:00,03:00:00,102
+2dollars,03:00:00,24:00:00,103
+2dollars_lendemain,00:00:00,03:00:00,104
+adobus,00:00:00,24:00:00,105
+gratuite,03:00:00,24:00:00,106

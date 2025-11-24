@@ -1,0 +1,6 @@
+fare_media_id,fare_media_name,fare_media_type
+cash,Paiement comptant,0
+OPUS,Carte OPUS,2
+CPO,Carte OPUS Occasionnelle,1
+nomade_paiement,Nomade Paiement,4
+poincons,Carte à poinçons,1

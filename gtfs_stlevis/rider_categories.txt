@@ -1,0 +1,9 @@
+rider_category_id,rider_category_name,is_default_fare_category,eligibility_url
+regular,Régulier,0,
+adapte,Transport Adapté,0,https://www.stlevis.ca/transport-adapte/admission
+child,0 à 11 ans (accompagné d'un adulte),0,
+12+,12 ans et plus,1,
+privilege,Privilège (12 - 23 ans),0,https://www.stlevis.ca/tarifs-points-de-vente/tarification
+etudiant,Étudiant à temps plein (23 ans et +),0,https://www.stlevis.ca/tarifs-points-de-vente/tarification
+aine,Aîné (65 ans et plus),0,https://www.stlevis.ca/tarifs-points-de-vente/tarification
+adobus,Adobus (12 à 17 ans),0,https://www.stlevis.ca/tarifs-points-de-vente/adobus
