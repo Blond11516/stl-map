@@ -139,7 +139,7 @@ fn body(routes: List(Route), feed_info: FeedInfoRecord) {
         ),
       ]),
       html.div(
-        [],
+        [attribute.id("routes-list")],
         routes
           |> list.sort(fn(left, right) { string.compare(left.id, right.id) })
           |> list.map(fn(route) {
