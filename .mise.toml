@@ -1,5 +1,64 @@
 [tools]
 deno = "2.0.0"
 gleam = "1.5.1"
-just = "1.36.0"
 node = "25.2.1"
+
+[vars]
+public_dir = "public"
+
+[tasks.create_public_dir]
+run = "mkdir -p {{vars.public_dir}}"
+
+[tasks."build:index"]
+run = "gleam run -m stl_map/build/index"
+depends_post = ["copy:index"]
+
+[tasks."copy:index"]
+depends = ["create_public_dir"]
+run = "cp dist/index/index.html {{vars.public_dir}}/index.html"
+
+[tasks."build:routes"]
+run = "gleam run -m stl_map/build/routes"
+depends_post = ["copy:routes"]
+
+[tasks."copy:routes"]
+depends = ["create_public_dir"]
+run = [
+    "mkdir -p {{vars.public_dir}}",
+    "cp dist/routes/* {{vars.public_dir}}/routes"
+]
+
+[tasks."build:js"]
+run = "gleam run -m stl_map/build/js"
+depends_post = ["copy:js"]
+
+[tasks."copy:js"]
+depends = ["create_public_dir"]
+run = [
+    "mkdir -p {{vars.public_dir}}/js",
+    "cp dist/js/index2.js* {{vars.public_dir}}/js/"
+]
+
+[tasks."dev_js"]
+run = [
+    "rm -rf {{vars.public_dir}}",
+    "mkdir -p {{vars.public_dir}}",
+    "gleam build",
+    "cd build/dev/javascript && rsync -r -f '+ *.mjs' -f '+ *.js' -f '+ **/' -f '- *' --prune-empty-dirs . ../../../{{vars.public_dir}}/js",
+    "echo 'export * from \"./stl_map/stl_map/frontend/index2.mjs\"' > {{vars.public_dir}}/js/index2.js"
+]
+depends_post = ["copy:static_assets"]
+
+[tasks."copy:static_assets"]
+depends = ["create_public_dir"]
+run = "cp -r static_assets/* {{vars.public_dir}}"
+
+[tasks.build]
+run = [
+    "rm -rf {{vars.public_dir}}",
+    "gleam run -m stl_map/build/all"
+]
+depends_post = ["copy:index", "copy:routes", "copy:static_assets", "copy:js"]
+
+[tasks.serve]
+run = "gleam run -m stl_map/serve"

@@ -35,9 +35,7 @@ jobs:
           version-file: .tool-versions
           version-type: strict
 
-      - uses: extractions/setup-just@v2
-        with:
-          just-version: 1.33.0
+      - uses: jdx/mise-action@v2
 
       - run: gleam deps download
 
@@ -46,13 +44,13 @@ jobs:
       # It is necessary to run this step explicitely because the automatic install flow forces the Erlang code path
       - run: gleam run -m esgleam/install
 
-      - run: just copy_static_assets
+      - run: mise run copy:static_assets
 
-      - run: just build_index
+      - run: mise run build:index
 
-      - run: just build_routes
+      - run: mise run build:routes
 
-      - run: just build_js
+      - run: mise run build:js
 
       - uses: actions/upload-pages-artifact@v3
         with:
