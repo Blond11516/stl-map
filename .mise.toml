@@ -19,7 +19,7 @@ depends_post = ["copy:routes"]
 [tasks."copy:routes"]
 depends = ["create_public_dir"]
 run = [
-    "mkdir -p {{vars.public_dir}}",
+    "mkdir -p {{vars.public_dir}}/routes",
     "cp dist/routes/* {{vars.public_dir}}/routes"
 ]
 
