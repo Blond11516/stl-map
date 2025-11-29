@@ -25,17 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - uses: denoland/setup-deno@v1
-        with:
-          deno-version-file: .tool-versions
-
-      - uses: erlef/setup-beam@v1
-        with:
-          otp-version: false
-          version-file: .tool-versions
-          version-type: strict
-
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
 
       - run: gleam deps download
 
