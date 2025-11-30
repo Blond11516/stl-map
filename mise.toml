@@ -1,6 +1,6 @@
 [tools]
 deno = "2.5.6"
-gleam = "1.5.1"
+gleam = "1.13.0"
 node = "25.2.1"
 
 [vars]
@@ -8,32 +8,30 @@ public_dir = "public"
 
 [tasks.create_public_dir]
 run = "mkdir -p {{vars.public_dir}}"
+wait_for = ["clean"]
 
-[tasks."build:index"]
+[tasks."compile:index"]
 run = "gleam run -m stl_map/build/index"
-depends_post = ["copy:index"]
 
 [tasks."copy:index"]
-depends = ["create_public_dir"]
+depends = ["create_public_dir", "compile:index"]
 run = "cp dist/index/index.html {{vars.public_dir}}/index.html"
 
-[tasks."build:routes"]
+[tasks."compile:routes"]
 run = "gleam run -m stl_map/build/routes"
-depends_post = ["copy:routes"]
 
 [tasks."copy:routes"]
-depends = ["create_public_dir"]
+depends = ["create_public_dir", "compile:routes"]
 run = [
     "mkdir -p {{vars.public_dir}}/routes",
     "cp dist/routes/* {{vars.public_dir}}/routes"
 ]
 
-[tasks."build:js"]
+[tasks."compile:js"]
 run = "gleam run -m stl_map/build/js"
-depends_post = ["copy:js"]
 
 [tasks."copy:js"]
-depends = ["create_public_dir"]
+depends = ["create_public_dir", "compile:js"]
 run = [
     "mkdir -p {{vars.public_dir}}/js",
     "cp dist/js/index2.js* {{vars.public_dir}}/js/"
@@ -53,11 +51,11 @@ depends_post = ["copy:static_assets"]
 depends = ["create_public_dir"]
 run = "cp -r static_assets/* {{vars.public_dir}}"
 
+[tasks.clean]
+run = "rm -rf {{vars.public_dir}}"
+
 [tasks.build]
-run = [
-    "rm -rf {{vars.public_dir}}",
-    "gleam run -m stl_map/build/all"
-]
+depends = ["clean"]
 depends_post = ["copy:index", "copy:routes", "copy:static_assets", "copy:js"]
 
 [tasks.serve]

@@ -36,11 +36,11 @@ jobs:
 
       - run: mise run copy:static_assets
 
-      - run: mise run build:index
+      - run: mise run copy:index
 
-      - run: mise run build:routes
+      - run: mise run copy:routes
 
-      - run: mise run build:js
+      - run: mise run copy:js
 
       - uses: actions/upload-pages-artifact@v3
         with:

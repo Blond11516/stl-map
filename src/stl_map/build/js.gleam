@@ -5,14 +5,17 @@ pub fn main() -> Nil {
 }
 
 pub fn build() -> Nil {
-  let _ =
+  let bundle_result =
     esgleam.new("./dist/js")
     |> esgleam.entry("stl_map/frontend/index2.gleam")
     |> esgleam.minify(True)
     |> esgleam.platform(esgleam.Browser)
-    |> esgleam.target("es2022")
+    |> esgleam.target("es2023")
     |> esgleam.raw("--sourcemap")
     |> esgleam.bundle()
 
-  Nil
+  case bundle_result {
+    Ok(_) -> Nil
+    Error(message) -> panic as message
+  }
 }

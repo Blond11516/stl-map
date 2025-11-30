@@ -17,11 +17,17 @@ pub fn build(routes: Option(List(Route))) -> Nil {
   let routes = option.lazy_unwrap(routes, gtfs.load_routes)
 
   list.each(routes, fn(route) {
-    route
-    |> route_json.from_route()
-    |> route_json.serialize()
-    |> simplifile.write(
-      to: "./dist/routes/" <> string.uppercase(route.id) <> ".json",
-    )
+    let result =
+      route
+      |> route_json.from_route()
+      |> route_json.serialize()
+      |> simplifile.write(
+        to: "./dist/routes/" <> string.uppercase(route.id) <> ".json",
+      )
+
+    case result {
+      Ok(Nil) -> Nil
+      Error(error) -> panic as string.inspect(error)
+    }
   })
 }

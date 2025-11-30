@@ -23,13 +23,13 @@ pub fn list_route_checkboxes() -> Array(Element) {
   document.query_selector_all("#" <> form_id <> " input[type=checkbox]")
 }
 
-pub fn change_start_time(e: Event) -> Nil {
+pub fn change_start_time(e: Event(dynamic)) -> Nil {
   let assert Ok(start_time) =
     e
     |> event.target()
     |> assert_is_element()
     |> element.value()
-    |> result.then(int.parse)
+    |> result.try(int.parse)
 
   element.set_text_content(
     globals.get_start_time_preview(),
@@ -87,7 +87,7 @@ pub fn remove_line(route_id: String) -> Nil {
   }
 }
 
-pub fn change_selected_routes(e: Event) -> Nil {
+pub fn change_selected_routes(e: Event(dynamic)) -> Nil {
   let checkbox = e |> event.target() |> assert_is_element()
   let checked = element.get_checked(checkbox)
   let assert Ok(name) = element.get_attribute(checkbox, "name")
@@ -100,13 +100,13 @@ pub fn change_selected_routes(e: Event) -> Nil {
   }
 }
 
-pub fn change_direction(e: Event) -> Nil {
+pub fn change_direction(e: Event(dynamic)) -> Nil {
   let assert Ok(direction) =
     e
     |> event.target()
     |> assert_is_element()
     |> element.get_attribute("value")
-    |> result.then(int.parse)
+    |> result.try(int.parse)
   globals.set_direction(direction)
 
   list_route_checkboxes()
@@ -126,7 +126,7 @@ pub fn change_direction(e: Event) -> Nil {
   })
 }
 
-pub fn change_routes(e: Event) -> Nil {
+pub fn change_routes(e: Event(dynamic)) -> Nil {
   let assert Ok(name) =
     e
     |> event.target()
@@ -201,8 +201,8 @@ pub fn init() -> Nil {
 
   let assert Ok(start_time) =
     document.query_selector("input[name=startAfter]")
-    |> result.then(element.value)
-    |> result.then(int.parse)
+    |> result.try(element.value)
+    |> result.try(int.parse)
 
   globals.set_start_time(start_time)
 
